@@ -1,2 +1,2 @@
 export const hostName="https://quanlytuyendung.cfapps.ap21.hana.ondemand.com"
-export const webHost="http://localhost:3000"
+export const webHost="https://nguyenkhanh2kpi.github.io/panda"
