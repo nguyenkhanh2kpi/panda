@@ -6,13 +6,14 @@ import { useEffect } from 'react'
 import { calendarService } from '../../Service/calendar.service'
 import { calendarConver } from './CalendarConvert'
 import './calendar.css'
+import { CircularProgress, Skeleton, Spinner, Stack, Text } from '@chakra-ui/react'
 
 const PropertyPane = (props) => <div className='mt-5'>{props.children}</div>
 
 export const AdminCalendar = () => {
   const [scheduleObj, setScheduleObj] = useState()
   const accessToken = JSON.parse(localStorage.getItem('data')).access_token
-  const [displayCalendar, setDisplayCalendar] = useState([])
+  const [displayCalendar, setDisplayCalendar] = useState()
 
   const change = (args) => {
     scheduleObj.selectedDate = args.value
@@ -31,8 +32,24 @@ export const AdminCalendar = () => {
       .catch((er) => console.log(er))
   }, [])
 
-  if (displayCalendar.length === 0) {
-    return <></>
+  if (displayCalendar === undefined) {
+    return (
+      <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
+        <Header category='pages' title='Calendar' />
+        <Stack>
+          <Skeleton height='50px' />
+          <Skeleton height='50px' />
+          <Skeleton height='50px' />
+        </Stack>
+      </div>
+    )
+  } else if (displayCalendar.length === 0) {
+    return (
+      <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
+        <Header category='pages' title='Calendar' />
+        <Text>Your calendar is null</Text>
+      </div>
+    )
   } else
     return (
       <>

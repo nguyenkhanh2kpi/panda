@@ -45,6 +45,7 @@ import { RoomEditInfomation } from "../pages-admin/RoomEdit/RoomEditInfomation";
 import { AdminCalendar } from "../pages-admin/GoogleCalendar/AdminCalendar";
 import { MarkCandidate } from "../pages-admin/MarkCandidate/MarkCandidate";
 import InterviewerListRoom from "../pages-admin/MarkCandidate/InterviewerListRoom";
+import { MyCompany } from "../pages-admin/MyCompany/MyCompany";
 
 const AllRoutesAd = () => {
     return (
@@ -105,6 +106,7 @@ const AllRoutesAd = () => {
         <Route path="/calendar-admin" element={<AdminCalendar/>} />
         <Route path="/mark-candidate/:roomId" element={<MarkCandidate/>} />
         <Route path="/interviewer-list-room" element={<InterviewerListRoom/>} />
+        <Route path="/my-company" element={<MyCompany/>} />
 
 
       </Routes>

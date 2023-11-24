@@ -1,9 +1,9 @@
 import React from 'react';
-import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock } from 'react-icons/ai';
+import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock, AiOutlineTeam } from 'react-icons/ai';
 import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart, FiBookOpen } from 'react-icons/fi';
 import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs';
 import { MdAccessibilityNew } from "react-icons/md";
-import { BiColorFill } from 'react-icons/bi';
+import { BiAlignLeft, BiBriefcase, BiBuilding, BiCalendarCheck, BiColorFill, BiNews, BiVideo } from 'react-icons/bi';
 import { IoMdContacts } from 'react-icons/io';
 import { RiContactsLine, RiStockLine } from 'react-icons/ri';
 import { MdOutlineSupervisorAccount } from 'react-icons/md';
@@ -541,7 +541,7 @@ export const links = [
       {
         title:"Position Skill",
         name: 'skill-position',
-        icon: <RiContactsLine/>,
+        icon: <BiAlignLeft />,
       },
       {
         title:"Question",
@@ -689,39 +689,34 @@ export const reccerLink = [
     title: 'RECRUITER',
     links: [
       {
-        name: 'ecommerce',
-        title: 'Quản lý room',
-        icon: <FiShoppingBag />,
+        title:"Công ty của tôi",
+        name: 'my-company',
+        icon: <BiBuilding />,
       },
       {
-        title:'Đăng công việc',
+        title:'Đăng tuyển dụng',
         name: 'job-posting',
-        icon: <FiShoppingBag />,
+        icon: <BiBriefcase />,
+      },
+      {
+        title:'Đội ngũ tuyển dụng',
+        name: 'interviewers',
+        icon: <AiOutlineTeam />
+      },
+      {
+        name: 'ecommerce',
+        title: 'Phòng phỏng vấn',
+        icon: <BiVideo />,
       },
       {
         title:"Event",
         name: 'event',
-        icon: <RiContactsLine/>,
-      },
-      {
-        title:"Position Skill",
-        name: 'skill-position',
-        icon: <RiContactsLine/>,
-      },
-      {
-        title:"Question",
-        name: 'question',
-        icon: <FiBookOpen />,
-      },
-      {
-        title:"Phỏng vấn",
-        name: 'interviewer-list-room',
-        icon: <FiBookOpen />,
+        icon: <BiNews />,
       },
       {
         title:"Lịch trình của tôi",
         name: 'calendar-admin',
-        icon: <FiBookOpen />,
+        icon: <BiCalendarCheck />,
       },
     ],
   },
