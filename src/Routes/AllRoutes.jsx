@@ -24,7 +24,7 @@ import ChangePassword from "../Components/ResetPassword/ChangePassword";
 // import AllJob from  "../Components/Job-recruiter/AllJob";
 const AllRoutes = () => {
     return (
-        <Routes >
+        <Routes basename="/panda">
             {/* <Route path='/jobDetail_Recruiter/:id' element={<JobDetailRecruiter/>} />
       <Route path='/allJob_Recruiter/' element={<AllJob/>} />
       <Route path='/job-posting/' element={<JobPosting/>} /> */}
