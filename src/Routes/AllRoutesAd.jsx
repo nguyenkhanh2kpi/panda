@@ -52,7 +52,7 @@ import { Companies } from "../pages-admin/Companies/Companies";
 
 const AllRoutesAd = () => {
     return (
-        <Routes basename="/panda">
+        <Routes >
         {/* dashboard  */}
         <Route path='/userInfo/' element={<UserInfo/>} /> 
         <Route path='/jobDetail_Recruiter/:id' element={<JobDetailRecruiter/>} />
