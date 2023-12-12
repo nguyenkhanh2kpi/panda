@@ -24,6 +24,7 @@ import { Link } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { interviewService } from "../../Service/interview.service";
 import { ToastContainer, toast } from "react-toastify";
+import { interviewerService } from "../../Service/interviewer.service";
 
 export const AssignInterviewer = ({ roomId }) => {
     const [interviewer, setInterviewer] = useState([]);
@@ -59,7 +60,7 @@ export const AssignInterviewer = ({ roomId }) => {
     };
 
     useEffect(() => {
-        interviewService
+        interviewerService
             .getMyInterviewer(accessToken)
             .then((res) => setInterviewer(res))
             .catch((error) => console.log(error));
@@ -78,7 +79,7 @@ export const AssignInterviewer = ({ roomId }) => {
                 <AlertDialogOverlay>
                     <AlertDialogContent>
                         <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                            Assign Candidate
+                            Assign Interviewer
                         </AlertDialogHeader>
                         <AlertDialogBody
                             style={{ maxHeight: "500px", overflowY: "auto" }}

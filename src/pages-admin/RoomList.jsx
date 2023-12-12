@@ -1,140 +1,112 @@
+import { Box, Flex, Text, Image, Button, HStack } from '@chakra-ui/react'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { BsBag } from 'react-icons/bs'
+import { CiLocationOn } from 'react-icons/ci'
+import { BsFillStarFill } from 'react-icons/bs'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
-
-import { Box, Flex, Text, Image, Button, HStack } from "@chakra-ui/react";
-import React from "react";
-import { Link } from "react-router-dom";
-import { BsBag } from 'react-icons/bs';
-import { CiLocationOn } from 'react-icons/ci';
-import { BsFillStarFill } from 'react-icons/bs';
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-
-import { loadRoom } from '../redux/Room/Action';
-import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { hostName } from "../global";
+import { loadRoom } from '../redux/Room/Action'
+import axios from 'axios'
+import { toast, ToastContainer } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import { hostName } from '../global'
 const RoomList = () => {
-
-  const navigate = useNavigate();
-  const accessToken = JSON.parse(localStorage.getItem("data")).access_token;
+  const navigate = useNavigate()
+  const accessToken = JSON.parse(localStorage.getItem('data')).access_token
   const submitHandler = async (e) => {
-    e.preventDefault();
-    const id = e.currentTarget.getAttribute("data-value")
-
-    console.log("bam dung r", accessToken)
-
+    e.preventDefault()
+    const id = e.currentTarget.getAttribute('data-value')
     try {
-
-
-      let data = '';
+      let data = ''
       let config = {
         method: 'delete',
         maxBodyLength: Infinity,
         url: `${hostName}/job-posting/${id}`,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
+          Authorization: `Bearer ${accessToken}`,
         },
-        data: data
-      };
+        data: data,
+      }
 
-      axios.request(config)
-        .then((response) => {
-        })
+      axios
+        .request(config)
+        .then((response) => {})
         .catch((error) => {
-          console.log(error);
-          toast.error("Delete Failed", {
-            position: "top-center",
-          });
-        });
+          console.log(error)
+          toast.error('Delete Failed', {
+            position: 'top-center',
+          })
+        })
 
-      toast.success("Delete Successfully", {
-        position: "top-center",
-      });
-      navigate("/allJob_Recruiter");
-
-    }
-    catch (error) {
-
-    }
+      toast.success('Delete Successfully', {
+        position: 'top-center',
+      })
+      navigate('/allJob_Recruiter')
+    } catch (error) {}
   }
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   useEffect(() => {
+    dispatch(loadRoom())
+  }, [])
 
-    dispatch(loadRoom());
-  }, []);
-
-  const roomList = useSelector((store) => store.room.data);
-  console.log(roomList)
-  const roomdatas = roomList.map(job => {
+  const roomList = useSelector((store) => store.room.data)
+  const roomdatas = roomList.map((job) => {
     return (
       <Link to={`/addCandidate/${job.jobPostId}/${job.id}`}>
-        <HStack  mb="30px" mt="50px" w={"100%"} backgroundColor={"#FFFFFF"} borderRadius='lg' >
-          <Box h="100%" key={job.id} w="70%" boxShadow='rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px' p='20px 20px 0 20px'>
-            <Box
-              pt='10px'
-              fontWeight='semibold'
-              as='h4'
-              lineHeight='tight'
-              noOfLines={1}
-              pb="10px"
-              fontSize='20px'
-              backgroundColor={"#03C9D7"}
-              borderRadius='lg'
-              pl="10px"
-              mb="10px"
-            >
+        <HStack mb='30px' mt='50px' w={'100%'} backgroundColor={'#FFFFFF'} borderRadius='lg'>
+          <Box h='100%' key={job.id} w='100%' boxShadow='rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px' p='20px 20px 0 20px'>
+            <Box pt='10px' fontWeight='semibold' as='h4' lineHeight='tight' noOfLines={1} pb='10px' fontSize='20px' borderRadius='lg' pl='10px' mb='10px'>
               Tên phòng : {job.roomName}
             </Box>
-            <Image style={{ width: "80px" }} src="https://cdn-icons-png.flaticon.com/512/5961/5961660.png" />
+            <Image style={{ width: '80px' }} src='https://cdn-icons-png.flaticon.com/512/5961/5961660.png' />
             <br></br>
-            <Flex >
-              <Box display='flex' mr='50px' mb="15px">
+            <Flex>
+              <Box display='flex' mr='50px' mb='15px'>
                 <BsBag style={{ height: '20px' }} />
                 <Text ml='10px'> Mô tả : {job.roomDescription}</Text>
               </Box>
             </Flex>
-            <Button disabled="true">{job.endDate} </Button>
-            <Button style={{ backgroundColor: "#00FF00" }} disabled="true">{job.listCandidate.length} người tham gia </Button>
-            <Button style={{ backgroundColor: "#FFFF00" }} disabled="true">{job.listInterviewer.length} người phỏng vấn </Button>
+            <Button disabled='true'>{job.endDate} </Button>
+            <Button ml={2} style={{ backgroundColor: '#00FF00' }} disabled='true'>
+              {job.listCandidate.length} người tham gia{' '}
+            </Button>
+            <Button ml={2} style={{ backgroundColor: '#FFFF00' }} disabled='true'>
+              {job.listInterviewer.length} người phỏng vấn{' '}
+            </Button>
             {/* <Button data-value={job.id}>delete</Button> */}
 
-            <Flex style={{ marginTop: "40px" }}>
-              <Box display='flex' mr='50px'>
-
-              </Box>
+            <Flex style={{ marginTop: '40px' }}>
+              <Box display='flex' mr='50px'></Box>
               {/* <Button >  <Link to={`/addCandidate/${job.jobPostId}/${job.id}`}>Thêm</Link> </Button> */}
             </Flex>
             <ToastContainer />
           </Box>
-          <Box w={"30%"}>
-            kjsdnk
-
-          </Box>
-
         </HStack>
-
       </Link>
-    );
-  });
+    )
+  })
 
   return (
     <>
-      <Box  p='20px' backgroundColor="#e9f3f5">
-
-        <Button ml="9%" style={{ backgroundColor: "#03C9D7" }}/*onClick={submitHandler}*/>  <Link to={`/roomAdd`}>Thêm phòng họp</Link></Button>
+      <Box p='20px' backgroundColor='#e9f3f5'>
+        <Button ml='9%' style={{ backgroundColor: '#03C9D7' }} /*onClick={submitHandler}*/>
+          {' '}
+          <Link to={`/roomAdd`}>Thêm phòng họp</Link>
+        </Button>
       </Box>
-      <Box backgroundColor="#e9f3f5" pl="10%" pt="20px" fontWeight='bold' fontSize='20px' >{roomdatas.length} phòng họp</Box>
-      <Box display='flex' justifyContent='space-between'  backgroundColor="#e9f3f5">
-
-        <Box justifyContent='space-between' ml='10%' width='90%' mr={"10%"}>
+      <Box backgroundColor='#e9f3f5' pl='10%' pt='20px' fontWeight='bold' fontSize='20px'>
+        {roomdatas.length} phòng họp
+      </Box>
+      <Box display='flex' justifyContent='space-between' backgroundColor='#e9f3f5'>
+        <Box justifyContent='space-between' ml='10%' width='90%' mr={'10%'}>
           {roomdatas}
         </Box>
-
       </Box>
     </>
-  );
-};
+  )
+}
 
-export default RoomList;
+export default RoomList

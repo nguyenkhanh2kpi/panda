@@ -59,11 +59,27 @@ const updateCompany =  async (token, form) => {
     }
 }
 
+const registerReccer = async (token, form) => {
+    try {
+      let config = { headers: { Authorization: `Bearer ${token}` } }
+      const res = await axios.post(`${API_URL}/company/register-reccer`, form, config)
+      return res.data
+    } catch (error) {
+      const axiosError = error
+      if (axiosError && axiosError.response && axiosError.response.status === 403) {
+        throw new Error('no_permistion')
+      } else {
+        throw error
+      }
+    }
+  }
+
 export const companyService = {
     getAllCompany,
     getMyCompany,
     getCompanyById,
     getJobByCompany,
     updateCompany,
+    registerReccer,
 
 };

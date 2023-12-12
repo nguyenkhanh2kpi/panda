@@ -118,7 +118,7 @@ export const AddQuestionInterview = ({ field, onAddClick }) => {
 
     return (
         <>
-            <Button w={"16%"} colorScheme="teal" onClick={onOpen}>
+            <Button color={"#ffffff"} backgroundColor={'rgb(3, 201, 215)'} w={"16%"} colorScheme="teal" onClick={onOpen}>
                 + {field}
             </Button>
 

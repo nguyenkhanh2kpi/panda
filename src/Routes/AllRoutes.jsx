@@ -46,7 +46,9 @@ const AllRoutes = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/resetPassword" element={<ResetPassword />} />
             <Route path="/mainhome" element={<MainHomepage />} />
-            <Route path="/jobpage" element={<JobPage />} />
+            <Route path="/jobpage" element={<JobPage/>} />
+            <Route path="/jobpage-search/:keyword/:location/:experience/:salary" element={<JobPage/>} />
+            <Route path="/jobpage-search/:location/:experience/:salary" element={<JobPage/>} />
             <Route path="/jobpage/:jobId" element={<JobDetail />} />
             <Route path="/services" element={<ServicesPage />} />
 

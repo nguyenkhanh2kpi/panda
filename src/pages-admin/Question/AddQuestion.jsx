@@ -90,6 +90,8 @@ export const AddQuestion = () => {
             .catch((er) => toast.error(er.message));
     }, []);
 
+    console.log(skills)
+
     return (
         <>
             <ToastContainer

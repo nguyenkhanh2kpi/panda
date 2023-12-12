@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { interviewService } from '../../Service/interview.service'
 import { useParams } from 'react-router-dom'
-import { Heading, HStack, SlideFade, VStack, Image, Text, Button, Wrap, WrapItem, Avatar, FormLabel, Input, Select, Box, SimpleGrid, Link, Spacer } from '@chakra-ui/react'
+import { Heading, HStack, SlideFade, VStack, Image, Text, Button, Wrap, WrapItem, Avatar, FormLabel, Input, Select, Box, SimpleGrid, Link, Spacer, Skeleton } from '@chakra-ui/react'
 import { MarkItem } from './MarkItem'
 import { interviewDetailService } from '../../Service/interviewDetail.service'
 
@@ -11,6 +11,7 @@ export const MarkCandidate = () => {
   const accessToken = JSON.parse(localStorage.getItem('data')).access_token
   const [selected, setIdSelected] = useState(0)
   const [interviewDetail, setInterviewDetail] = useState(null)
+  const [clickBox, setClockBox] = useState(false)
 
   useEffect(() => {
     interviewService.getInterviewByID(accessToken, params.roomId).then((res) => setRoom(res))
@@ -26,13 +27,42 @@ export const MarkCandidate = () => {
   useEffect(() => {
     if (selected === 0) {
       setInterviewDetail(null)
+      setClockBox(false)
     } else {
-      interviewDetailService.getInterviewDetailById(accessToken, selected).then((response) => setInterviewDetail(response))
+      interviewDetailService.getInterviewDetailById(accessToken, selected).then((response) => {
+        setInterviewDetail(response)
+        setClockBox(false)
+      })
     }
   }, [selected])
 
   if (room === undefined) {
-    return <></>
+    return (
+      <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
+        <VStack spacing={10}>
+          <Skeleton w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+          <Skeleton h={300} w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+          <Skeleton w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+          <Skeleton h={300} w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+          <Skeleton w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+        </VStack>
+      </Box>
+    )
   } else
     return (
       <>
@@ -89,6 +119,7 @@ export const MarkCandidate = () => {
                     key={cadidate.itemId}
                     onClick={() => {
                       setIdSelected(cadidate.itemId)
+                      setClockBox(true)
                     }}
                     w={'100%'}
                     maxW='sm'
@@ -121,7 +152,7 @@ export const MarkCandidate = () => {
               Cadidate
             </Text>
 
-            <MarkItem roomId={selected} loadDetail={interviewDetail} />
+            <MarkItem isClick={clickBox} roomId={selected} loadDetail={interviewDetail} />
           </VStack>
         </Box>
       </>

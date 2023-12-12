@@ -43,14 +43,14 @@ function App() {
         <div className="flex relative dark:bg-main-dark-bg">
           <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
             <TooltipComponent content="Settings" position="Top">
-              <button
+              {/* <button
                 type="button"
                 onClick={() => setThemeSettings(true)}
                 style={{ background: currentColor, borderRadius: "50%" }}
                 className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
               >
                 <FiSettings />
-              </button>
+              </button> */}
             </TooltipComponent>
           </div>
           {activeMenu ? (
@@ -73,7 +73,7 @@ function App() {
               <Navbar />
             </div>
             <div>
-              {themeSettings && <ThemeSettings />}
+              {/* {themeSettings && <ThemeSettings />} */}
               <AllRoutesAd />
             </div>
             <FooterAdmin />

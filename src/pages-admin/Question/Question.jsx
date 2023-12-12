@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Header } from '../../Components-admin'
-import { Box, IconButton, List, ListIcon, ListItem, Text } from '@chakra-ui/react'
+import { Box, IconButton, List, ListIcon, ListItem, Skeleton, Stack, Text, VStack } from '@chakra-ui/react'
 import { MdCheckCircle, MdSettings } from 'react-icons/md'
 import { questionService } from '../../Service/question.service'
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
@@ -10,6 +10,8 @@ import { Pagination } from 'react-bootstrap'
 import { PaginationItem } from '@mui/material'
 import { AddIcon, ArrowBackIcon, ArrowForwardIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
+import './question.css'
 
 export const dropdownField = [
   {
@@ -100,102 +102,148 @@ export const Question = () => {
       </div>
     )
   }
-  return (
-    <>
-      <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
-        <Header category='App' title='Question' />
-        <IconButton color='#03C9D7' backgroundColor='#f7f7f7' aria-label='Search database' icon={<AddIcon />} onClick={() => navigate('/question/add')} />
 
-        <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
-          <div className='flex items-center gap-2'>
-            <p className='text-xl font-semibold'>Filter</p>
+  // panigate
+  const [currentPage, setCurrentPage] = useState(0)
+  const itemsPerPage = 10
+  const pageCount = Math.ceil(filteredQuestions.length / itemsPerPage)
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected)
+  }
+  const displayItems = filteredQuestions.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+
+  if (allQuestions.length === 0) {
+    return (
+      <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
+        <VStack spacing={10}>
+          <Skeleton w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+          <Skeleton h={300} w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+          <Skeleton w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+          <Skeleton h={300} w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+          <Skeleton w={'70%'}>
+            <div>contents wrapped</div>
+            <div>won't be visible</div>
+          </Skeleton>
+        </VStack>
+      </Box>
+    )
+  } else
+    return (
+      <>
+        <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
+          <Header category='App' title='Question' />
+          <IconButton color='#03C9D7' backgroundColor='#f7f7f7' aria-label='Search database' icon={<AddIcon />} onClick={() => navigate('/question/add')} />
+
+          <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
+            <div className='flex items-center gap-2'>
+              <p className='text-xl font-semibold'>Filter</p>
+            </div>
+            <div className='flex items-center gap-2'>
+              <p>Field:</p>
+              <DropDown
+                value={filter.fieldId}
+                name='field'
+                list={dropdownField}
+                onChange={(selectedValue) =>
+                  setFilter((filter) => ({
+                    ...filter,
+                    fieldId: selectedValue,
+                  }))
+                }
+              />
+            </div>
+            <div className='flex items-center gap-2'>
+              <p>Skill:</p>
+              <DropDown
+                value={filter.skillId}
+                name='skill'
+                list={dropdownSkill(skills)}
+                onChange={(selectedValue) =>
+                  setFilter((filter) => ({
+                    ...filter,
+                    skillId: selectedValue,
+                  }))
+                }
+              />
+            </div>
+            <div className='flex items-center gap-2'>
+              <p>Position:</p>
+              <DropDown
+                value={filter.positionId}
+                name='position'
+                list={dropdownPosition(positions)}
+                onChange={(selectedValue) =>
+                  setFilter((filter) => ({
+                    ...filter,
+                    positionId: selectedValue,
+                  }))
+                }
+              />
+            </div>
           </div>
-          <div className='flex items-center gap-2'>
-            <p>Field:</p>
-            <DropDown
-              value={filter.fieldId}
-              name='field'
-              list={dropdownField}
-              onChange={(selectedValue) =>
-                setFilter((filter) => ({
-                  ...filter,
-                  fieldId: selectedValue,
-                }))
-              }
+
+          <Stack w={'100%'}>
+            <ReactPaginate
+              className='question-panigate'
+              pageCount={pageCount}
+              onPageChange={handlePageChange}
+              previousLabel='<'
+              nextLabel='>'
+              breakLabel='...'
+              breakClassName='page-item'
+              breakLinkClassName='page-link'
+              containerClassName='pagination'
+              pageClassName='page-item'
+              pageLinkClassName='page-link'
+              previousClassName='page-item'
+              previousLinkClassName='page-link'
+              nextClassName='page-item'
+              nextLinkClassName='page-link'
+              activeClassName='active'
             />
-          </div>
-          <div className='flex items-center gap-2'>
-            <p>Skill:</p>
-            <DropDown
-              value={filter.skillId}
-              name='skill'
-              list={dropdownSkill(skills)}
-              onChange={(selectedValue) =>
-                setFilter((filter) => ({
-                  ...filter,
-                  skillId: selectedValue,
-                }))
-              }
-            />
-          </div>
-          <div className='flex items-center gap-2'>
-            <p>Position:</p>
-            <DropDown
-              value={filter.positionId}
-              name='position'
-              list={dropdownPosition(positions)}
-              onChange={(selectedValue) =>
-                setFilter((filter) => ({
-                  ...filter,
-                  positionId: selectedValue,
-                }))
-              }
-            />
-          </div>
+          </Stack>
+
+          <List spacing={3}>
+            {displayItems.map((item) => (
+              <ListItem key={item.id}>
+                <ListIcon as={MdCheckCircle} color='green.500' />
+                <Box>
+                  <Text fontSize='lg' fontWeight='bold'>
+                    {item.question}
+                  </Text>
+                  <Text>Creator: {item.creatorName}</Text>
+                  <Text>Field: {item.fieldEnum}</Text>
+                  <Text>Answer: {item.answer}</Text>
+                  <Text>
+                    Skill:{' '}
+                    {item.skillIds.map((id) => {
+                      return `${skills.find((s) => s.id === id).skillName}, `
+                    })}
+                  </Text>
+                  <Text>
+                    Position:{' '}
+                    {item.positionIds.map((id) => {
+                      return `${positions.find((s) => s.id === id).positionName}, `
+                    })}
+                  </Text>
+                  <IconButton color='#e06cae' backgroundColor='#f7f7f7' aria-label='Search database' icon={<EditIcon />} onClick={() => navigate(`/question/edit/${item.id}`)} />
+                </Box>
+              </ListItem>
+            ))}
+          </List>
         </div>
-
-        <List spacing={3}>
-          {filteredQuestions.map((item) => (
-            <ListItem key={item.id}>
-              <ListIcon as={MdCheckCircle} color='green.500' />
-              <Box>
-                <Text fontSize='lg' fontWeight='bold'>
-                  {item.question}
-                </Text>
-                <Text>Creator: {item.creatorName}</Text>
-                <Text>Field: {item.fieldEnum}</Text>
-                <Text>Answer: {item.answer}</Text>
-                <Text>
-                  Skill:{' '}
-                  {item.skillIds.map((id) => {
-                    return `${skills.find((s) => s.id === id).skillName}, `
-                  })}
-                </Text>
-                <Text>
-                  Position:{' '}
-                  {item.positionIds.map((id) => {
-                    return `${positions.find((s) => s.id === id).positionName}, `
-                  })}
-                </Text>
-                <IconButton color='#e06cae' backgroundColor='#f7f7f7' aria-label='Search database' icon={<EditIcon />} onClick={() => navigate(`/question/edit/${item.id}`)} />
-              </Box>
-            </ListItem>
-          ))}
-        </List>
-
-        <Pagination
-          count={10}
-          renderItem={(allQuestions) => (
-            <PaginationItem
-              slots={{
-                previous: ArrowBackIcon,
-                next: ArrowForwardIcon,
-              }}
-              {...allQuestions}
-            />
-          )}
-        />
-      </div>
-    </>
-  )
+      </>
+    )
 }

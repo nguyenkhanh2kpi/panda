@@ -1,5 +1,5 @@
 {
-  "homepage": "http://nguyenkhanh2kpi.github.io/panda", 
+  "homepage": "http://nguyenkhanh2kpi.github.io/panda",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
@@ -37,6 +37,7 @@
     "react-google-login": "^5.2.2",
     "react-icons": "^4.7.1",
     "react-multi-carousel": "^2.8.2",
+    "react-paginate": "^8.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.5",
     "react-scripts": "^5.0.1",
@@ -54,7 +55,7 @@
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",
-    "deploy":"gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

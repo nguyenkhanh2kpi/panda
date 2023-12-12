@@ -21,6 +21,7 @@ const Navbar1 = () => {
           </Link>
         </Box>
         <Stack direction={'row'} w={'280px'} h={'100%'} ml={'80px'}>
+          {/*           
           <Box h={'100%'} display={'flex'} w={'33.3%'} alignItems={'center'} justifyContent={'center'} fontWeight={'500'} lineHeight={'20px'} color={'#445578'} cursor={'pointer'}>
             <Menu isOpen={jobs.isOpen}>
               <Button
@@ -35,6 +36,23 @@ const Navbar1 = () => {
                 color={'#445578'}>
                 <Link to='/jobpage'>Jobs</Link>
               </Button>
+            </Menu>
+          </Box> */}
+
+          <Box h={'100%'} display={'flex'} w={'33.3%'} alignItems={'center'} justifyContent={'center'} fontWeight={'500'} lineHeight={'20px'} color={'#445578'} cursor={'pointer'}>
+            <Menu isOpen={services.isOpen}>
+              <MenuButton
+                onClick={() => navigate('/jobpage')}
+                _hover={{
+                  background: 'white',
+                  border: 'none',
+                }}
+                border={'none'}
+                bgColor={'white'}
+                as={Button}
+                color={'#445578'}>
+                Jobs
+              </MenuButton>
             </Menu>
           </Box>
 

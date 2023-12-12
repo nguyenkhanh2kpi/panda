@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Container, Flex, Heading, Image, Text } from '@chakra-ui/react'
+import { Badge, Box, Center, Container, Flex, Grid, Heading, Image, Spinner, Text } from '@chakra-ui/react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -8,84 +8,95 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { loadJob } from '../../redux/Job-posting/Action'
 import uuid from 'react-uuid'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { StarIcon } from '@chakra-ui/icons'
+import { BsCalendar2DayFill, BsCurrencyDollar } from 'react-icons/bs'
+import { BiDollar, BiLocationPlus } from 'react-icons/bi'
 
 const JobInterest = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadJob())
   }, [])
+  const navigate = useNavigate()
 
   const jobList = useSelector((store) => store.job.data)
-  console.log('job list', jobList)
-  if(jobList!==null)
-  return (
-    <>
-      <Container h={'356px'} maxW={'75%'} m={'auto'} pt={'32px'} pb={'12px'}>
-        <Heading textAlign={'center'} fontWeight={'700'} fontSize={'27px'} lineHeight={'40px'} mb={'6px'}>
-          Việc làm tốt nhất
+  if (jobList !== null)
+    return (
+      <>
+        <Heading mt={5} textAlign={'center'} fontWeight={'700'} fontSize={'27px'} lineHeight={'40px'} mb={'6px'}>
+          Việc làm mới nhất
         </Heading>
-        <Box h={'272px'} maxW={'100%'} py={'20px'}>
-          <Swiper slidesPerView={4} navigation={true} modules={[Navigation]} className='mySwiper'>
-            {jobList.map((i) => {
-              return i.status === true ? (
-                <Box key={uuid()}>
-                  <SwiperSlide>
-                    <Link to={`/jobDetail/${i.id}`}>
+        <Box className='container py-4 px-4 justify-conten-center '>
+          <Swiper display='flex' slidesPerView={4} navigation={true} modules={[Navigation]} className='mySwiper'>
+            {jobList !== null ? (
+              jobList
+                .map((i) => {
+                  return i.status === true ? (
+                    <SwiperSlide>
                       <Box
-                        cursor={'pointer'}
-                        display={'flex'}
-                        flexDirection={'column'}
-                        w={'265px'}
-                        h={'232px'}
-                        border={'1px'}
-                        borderColor={'gray.100'}
                         _hover={{
-                          background: 'white',
-                          boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px',
+                          boxShadow: 'xl',
+                          transition: 'all 0.2s ease-in-out',
+                          transform: 'translate(2px, -5px)',
                         }}
-                        borderRadius={'15px'}
-                        pl={'24px'}
-                        pr={'20px'}
-                        py={'20px'}
-                        mr={'16px'}>
-                        <Box w={'100%'} h={'72px'} pr={'145px'}>
-                          <Image src={`${i.image}`} borderRadius={10} />
-                        </Box>
-                        <Text pt={'10px'} fontWeight={'600'} fontSize={'17px'} lineHeight={'23px'}>
-                          {i.name}
-                        </Text>
-                        <Flex direction={'row'} pt={'4px'} h={'18px'} w={'100%'}>
-                          <Text fontSize={'15px'} pr={'7px'} lineHeight={'18px'}>
-                            {i.salary}
-                          </Text>
-                          {/* <Image src='https://static.naukimg.com/s/7/0/assets/images/src/widgets/popular-jobs-wdgt/v5/resources/star-icon.c892ce05.svg' />
-                          <Text fontSize={'15px'} lineHeight={'18px'}>
-                          </Text> */}
-                        </Flex>
-                        <Box display={'flex'} alignItems={'center'} flexDirection={'row'} mt={'48px'} h={'18px'} w={'100%'}>
-                          <Image mr={'4px'} src='https://static.naukimg.com/s/7/0/assets/images/src/widgets/popular-jobs-wdgt/v5/resources/location-icon.f29c9d1c.svg' />
-                          <Text mr={'4px'} color={'#445578'} fontSize={'13px'} fontWeight={'400'} lineHeight={'18px'}>
-                            {i.location}
-                          </Text>
-                          <Image mr={'4px'} src='https://static.naukimg.com/s/7/0/assets/images/src/widgets/popular-jobs-wdgt/v5/resources/experience-icon.b3552352.svg' />
-                          <Text mr={'4px'} color={'#445578'} fontSize={'13px'} fontWeight={'400'} lineHeight={'18px'}>
-                            {i.experience}
-                          </Text>
+                        m={5}
+                        onClick={() => navigate(`/jobDetail/${i.id}`)}
+                        key={uuid()}
+                        maxW='sm'
+                        borderWidth='1px'
+                        borderRadius='lg'
+                        overflow='hidden'>
+                        <Image w={277} h={164} src={i.image} alt='image' />
+
+                        <Box p='6'>
+                          <Box display='flex' alignItems='baseline'>
+                            <Box color='gray.500' fontWeight='semibold' letterSpacing='wide' fontSize='xs' textTransform='uppercase'>
+                              {i.name}
+                            </Box>
+                          </Box>
+
+                          <Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' noOfLines={1}>
+                            {i.title}
+                          </Box>
+
+                          <Box display='flex'>
+                            <BiDollar />
+                            <Box as='span' color='gray.600' fontSize='sm'>
+                              {i.salary}
+                            </Box>
+                          </Box>
+
+                          <Box display='flex' mt='2' alignItems='center'>
+                            <BiLocationPlus />
+                            <Box as='span' color='gray.600' fontSize='sm'>
+                              {i.location}
+                            </Box>
+                          </Box>
+
+                          <Box display='flex' mt='2' alignItems='center'>
+                            <BsCalendar2DayFill />
+                            <Box as='span' color='gray.600' fontSize='sm'>
+                              {i.workingForm}
+                            </Box>
+                          </Box>
                         </Box>
                       </Box>
-                    </Link>
-                  </SwiperSlide>
-                </Box>
-              ) : (
-                <div></div>
-              )
-            })}
+                    </SwiperSlide>
+                  ) : (
+                    <div></div>
+                  )
+                })
+                .slice(-8)
+            ) : (
+              <Center direction='row' spacing={4} w={'80vw'} h={'20vw'}>
+                <Spinner color='blue.500' size='xl' />
+              </Center>
+            )}
           </Swiper>
         </Box>
-      </Container>
-    </>
-  )
+      </>
+    )
 }
 
 export default JobInterest

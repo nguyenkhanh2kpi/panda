@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { companyService } from '../../Service/company.service'
 import { UpdateCompany } from './UpdateCompany'
 
-
-
 export const MyCompany = () => {
   const [company, setCompany] = useState()
   const accessToken = JSON.parse(localStorage.getItem('data')).access_token
@@ -21,7 +19,6 @@ export const MyCompany = () => {
         <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
           <VStack spacing={3}>
             <Box p={'20%'} borderRadius={20} backgroundColor={'#FFFFFF'} w={'100%'} mb={10}>
-              {/* <Spinner thickness='10px' speed='0.65s' emptyColor='gray.200' color='blue.500' size='xl' /> */}
               <Skeleton>
                 <div>contents wrapped</div>
                 <div>won't be visible</div>
@@ -37,7 +34,7 @@ export const MyCompany = () => {
         <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
           <VStack spacing={3}>
             <Box p={'8%'} borderRadius={20} backgroundColor={'#FFFFFF'} w={'100%'} mb={10}>
-              <Image w='90%' h={300} borderRadius={20} src={company.avatar} alt={company.name} />
+              <Image w='90%' h={300} borderRadius={20} src={company.avatar} alt="Company" />
               <Text pt={20} fontWeight={'black'} fontSize='xl'>
                 {company.name}
               </Text>

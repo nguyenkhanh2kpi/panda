@@ -1,16 +1,22 @@
-import { Avatar, AvatarGroup, Box, Button, HStack, Image, Link, SimpleGrid, Tag, Text, VStack, Wrap, WrapItem } from '@chakra-ui/react'
+import { Avatar, AvatarGroup, Box, Button, HStack, Image, Link, SimpleGrid, Skeleton, Stack, Tag, Text, VStack, Wrap, WrapItem } from '@chakra-ui/react'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { interviewService } from '../../Service/interview.service'
+import { Pie } from '../../Components-admin'
 
 export default function InterviewerListRoom() {
   const navigate = useNavigate()
   const accessToken = JSON.parse(localStorage.getItem('data')).access_token
-  const [listRooms, setListRoom] = useState([])
+  const [listRooms, setListRoom] = useState()
   // const [listCandidate, setLiscandidate] = useState([]);
+
+  const ecomPieChartData = [
+    { x: 'chưa phỏng vấn', y: 18, text: '60%' },
+    { x: 'đã phỏng vấn', y: 15, text: '40%' },
+  ]
 
   useEffect(() => {
     interviewService
@@ -19,7 +25,6 @@ export default function InterviewerListRoom() {
       .catch((error) => console.log(error))
   }, [])
 
-  console.log(listRooms)
   const convertDateTime = (dateString) => {
     const dateObj = new Date(dateString)
     const formattedTime = `${String(dateObj.getHours()).padStart(2, '0')}h${String(dateObj.getMinutes()).padStart(2, '0')}`
@@ -27,18 +32,57 @@ export default function InterviewerListRoom() {
     return formattedDate
   }
 
+  if (listRooms === undefined) {
+    return (
+      <>
+        <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
+          <VStack spacing={10}>
+            <Skeleton w={'70%'}>
+              <div>contents wrapped</div>
+              <div>won't be visible</div>
+            </Skeleton>
+            <Skeleton h={300} w={'70%'}>
+              <div>contents wrapped</div>
+              <div>won't be visible</div>
+            </Skeleton>
+            <Skeleton w={'70%'}>
+              <div>contents wrapped</div>
+              <div>won't be visible</div>
+            </Skeleton>
+            <Skeleton h={300} w={'70%'}>
+              <div>contents wrapped</div>
+              <div>won't be visible</div>
+            </Skeleton>
+            <Skeleton w={'70%'}>
+              <div>contents wrapped</div>
+              <div>won't be visible</div>
+            </Skeleton>
+          </VStack>
+        </Box>
+      </>
+    )
+  }
   if (listRooms.length === 0) {
-    return <></>
+    return (
+      <>
+        <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
+          <VStack spacing={10}>
+            <Text>No interview room</Text>
+          </VStack>
+        </Box>
+      </>
+    )
   } else
     return (
       <>
         <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
           <VStack spacing={10}>
             <HStack w={'100%'} spacing={10}>
-              <Box p={5} borderRadius='lg' backgroundColor={'#FFFFFF'} w={'33%'} h={'190px'}>
+              <Box overflow={"hidden"} p={5} borderRadius='lg' backgroundColor={'#FFFFFF'} w={'33%'} h={'190px'}>
                 <Text fontFamily={''} fontWeight={'black'}>
                   10 Buổi phỏng vấn
                 </Text>
+                <Pie id='pie-chart' data={ecomPieChartData} legendVisiblity={false} height='160px' />
               </Box>
               <Box p={5} borderRadius='lg' backgroundColor={'#FFFFFF'} w={'33%'} h={'190px'}>
                 <Text fontWeight={'black'}>30 ứng viên</Text>

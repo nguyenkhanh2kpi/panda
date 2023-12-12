@@ -98,7 +98,7 @@ export const UpdateCompany = ({ data }) => {
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Avatar</FormLabel>
-              {loading ? <Spinner size='xl' /> : <Img borderRadius={20} src={company.avatar} onClick={openFileUpload} />}
+              {loading ? <Spinner size='xl' /> : <Img alt='Choose img' borderRadius={20} src={company.avatar} onClick={openFileUpload} />}
               <input id='file-upload' type='file' accept='image/*' onChange={handleFileChange} style={{ display: 'none' }} />
             </FormControl>
           </ModalBody>

@@ -80,13 +80,9 @@ export const K_Event = () => {
         <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
           <Header category='App' title='Event' />
           <div className='mt-24'>
-            {/* <div className="flex flex-wrap lg:flex-nowrap justify-center "> */}
-            {/* <div className="mt-6"> */}
             <Button height='50px' color='white' bgColor='#03C9D7' text='Xem chi tiết' borderRadius='10px'>
               <Link to='/event/add'>Add</Link>
             </Button>
-            {/* </div> */}
-            {/* </div> */}
           </div>
 
           <div className='mt-24'>
