@@ -29,33 +29,33 @@ const AllRoutes = () => {
       <Route path='/allJob_Recruiter/' element={<AllJob/>} />
       <Route path='/job-posting/' element={<JobPosting/>} /> */}
 
-            <Route exact path="/userInfo/" element={<UserInfo />} />
-            <Route exact path="/verify/:email/" element={<Verify />} />
-            <Route exact path="/verifyResetPW/:email/" element={<VerifyPassword />} />
-            <Route exact path="/changePassword/:id/:otp/" element={<ChangePassword />} />
-            <Route exact path="/jobDetail/:id" element={<JobDetail />} />
-            <Route exact path="/logout" element={<Logout />} />
+            <Route path="/userInfo/" element={<UserInfo />} />
+            <Route path="/verify/:email/" element={<Verify />} />
+            <Route path="/verifyResetPW/:email/" element={<VerifyPassword />} />
+            <Route path="/changePassword/:id/:otp/" element={<ChangePassword />} />
+            <Route path="/jobDetail/:id" element={<JobDetail />} />
+            <Route path="/logout" element={<Logout />} />
             {/* Don't Touch it Starts*/}
-            <Route exact path="/" element={<HomePage />} />
-            <Route exact path="/companies" element={<Companies />} />
-            <Route exact path="/companies/:id" element={<CompanyProfile />} />
-            <Route exact path="/create" element={<CreateCompany />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/companies" element={<Companies />} />
+            <Route path="/companies/:id" element={<CompanyProfile />} />
+            <Route path="/create" element={<CreateCompany />} />
             {/* Don't Touch it Ends*/}
 
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/signup" element={<Signup />} />
-            <Route exact path="/resetPassword" element={<ResetPassword />} />
-            <Route exact path="/mainhome" element={<MainHomepage />} />
-            <Route exact path="/jobpage" element={<JobPage/>} />
-            <Route exact path="/jobpage-search/:keyword/:location/:experience/:salary" element={<JobPage/>} />
-            <Route exact path="/jobpage-search/:location/:experience/:salary" element={<JobPage/>} />
-            <Route exact path="/jobpage/:jobId" element={<JobDetail />} />
-            <Route exact path="/services" element={<ServicesPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/resetPassword" element={<ResetPassword />} />
+            <Route path="/mainhome" element={<MainHomepage />} />
+            <Route path="/jobpage" element={<JobPage/>} />
+            <Route path="/jobpage-search/:keyword/:location/:experience/:salary" element={<JobPage/>} />
+            <Route path="/jobpage-search/:location/:experience/:salary" element={<JobPage/>} />
+            <Route path="/jobpage/:jobId" element={<JobDetail />} />
+            <Route path="/services" element={<ServicesPage />} />
 
             {/* khanhs */}
-            <Route exact path="/events" element={<Events />} />
-            <Route exact path="/event/:id" element={<EventDetailHome />} />
-            <Route exact path="/cv-build" element={<CurriculumVitae />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/event/:id" element={<EventDetailHome />} />
+            <Route path="/cv-build" element={<CurriculumVitae />} />
         </Routes>
     );
 };
