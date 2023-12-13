@@ -1,5 +1,5 @@
-import { Alert, AlertIcon, Box, Button, Image, Text, useDisclosure, SimpleGrid, Badge } from '@chakra-ui/react'
-import React from 'react'
+import { Alert, AlertIcon, Box, Button, Image, Text, useDisclosure, SimpleGrid, Badge, Link } from '@chakra-ui/react'
+import React, { Fragment, useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { BsBag, BsFillStarFill } from 'react-icons/bs'
@@ -8,9 +8,22 @@ import { loadJobDetail } from '../../redux/JobDetail/Action'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer, toast } from 'react-toastify'
-import { hostName, webHost } from "../../global";
+import { hostName, webHost } from '../../global'
+import { IoBriefcaseOutline } from 'react-icons/io5'
+import { HiOutlineCurrencyDollar } from 'react-icons/hi'
+import { MdOutlineLocationOn } from 'react-icons/md'
+import { MdOutlineTimelapse } from 'react-icons/md'
+import { IoHourglassOutline } from 'react-icons/io5'
+import { IoMedalOutline } from 'react-icons/io5'
+import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai'
+import { companyService } from '../../Service/company.service'
 
 function JobDetail() {
+  const [companies, setCompanies] = useState([])
+  useEffect(() => {
+    companyService.getAllCompany().then((res) => setCompanies(res))
+  }, [])
+
   const accessToken = JSON.parse(localStorage.getItem('data')) !== null ? JSON.parse(localStorage.getItem('data')).access_token : null
   const submitHandler = async (e) => {
     console.log(e.target.value)
@@ -39,84 +52,75 @@ function JobDetail() {
     dispatch(loadJobDetail(params.id))
   }, [params.id])
   const data = useSelector((store) => store.jobDetail.data)
-
-  console.log(data)
+  const company = companies.filter((item) => item.userId === data.user_id)
   if (data != null) {
     return (
-      <Box mt='100px'>
+      <Box mt='100px' fontFamily={'Montserrat'}>
         <Box display='flex' justifyContent='space-evenly'>
           <Box w='850px'>
-            <Box ml='50px' p='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em' color='RGBA(0, 0, 0, 0.76)'>
+            <Box borderRadius={7} ml='50px' p='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em' color='RGBA(0, 0, 0, 0.76)'>
               <Text fontSize='20px' fontWeight='bold'>
                 {data.name}
               </Text>
 
               <SimpleGrid w='100%' h='80px' mt='50px' mr='10' columns={3} spacing={'10'}>
                 <Box>
-                  {' '}
                   <Image pl='25%' borderRadius='3px' h='80px' src={`${data.image}`} />
                 </Box>
 
                 <Box fontSize='15px' justifyItems='center'>
                   <Text display='flex' alignContent='center'>
                     <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
-                      <BsBag />{' '}
+                      <IoBriefcaseOutline />
                     </Box>
-                    Vị trí :{' '}
-                    <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px'>
-                      {' '}
-                      ({data.position}){' '}
-                    </Badge>
+                    Vị trí :
+                    <Text ml={2} fontWeight={'bold'}>
+                      {data.position}
+                    </Text>
                   </Text>
 
                   <Text display='flex' alignContent='center'>
                     <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
-                      <BsBag />{' '}
+                      <HiOutlineCurrencyDollar />
                     </Box>
-                    Mức lương :{' '}
-                    <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px'>
-                      {' '}
-                      {data.salary}{' '}
-                    </Badge>
+                    Mức lương :
+                    <Text ml={2} fontWeight={'bold'}>
+                      {data.salary}
+                    </Text>
                   </Text>
                 </Box>
 
                 <Box>
                   <Text display='flex' alignContent='center'>
                     <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
-                      <BsBag />{' '}
-                    </Box>{' '}
-                    Kinh Nghiệm :{' '}
-                    <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px'>
-                      {' '}
+                      <IoHourglassOutline />
+                    </Box>
+                    Kinh Nghiệm :
+                    <Text ml={2} fontWeight={'bold'}>
                       {data.experience}
-                    </Badge>
+                    </Text>
                   </Text>
 
                   <Text display='flex' alignContent='center'>
                     <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
-                      {' '}
-                      <CiLocationOn />{' '}
-                    </Box>{' '}
-                    Địa điểm :{' '}
-                    <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px'>
-                      {' '}
+                      <MdOutlineLocationOn />
+                    </Box>
+                    Địa điểm:
+                    <Text ml={2} fontWeight={'bold'}>
                       {data.location}
-                    </Badge>
+                    </Text>
                   </Text>
                 </Box>
               </SimpleGrid>
 
               <Box w='100%' mt='30px' mb='20px'>
-                <Button w='100%' bg='teal' value={data.id} onClick={submitHandler}>
+                <Button w='100%' value={data.id} onClick={submitHandler}>
                   Apply
                 </Button>
               </Box>
-
-              <hr />
             </Box>
 
-            <Box mt='30px' ml='50px' p='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em' color='RGBA(0, 0, 0, 0.76)'>
+            <Box borderRadius={7} mb={20} mt='30px' ml='50px' p='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em' color='RGBA(0, 0, 0, 0.76)'>
               <Text fontSize='20px' fontWeight='bold'>
                 Job description
               </Text>
@@ -125,170 +129,151 @@ function JobDetail() {
               </Text>
 
               <Box>
-                <Text mt='30px' color='RGBA(0, 0, 0, 0.50)' fontSize='18px' fontWeight='bold'>
+                <Text mt='30px' fontSize='18px' fontWeight='bold'>
                   Vị trí
                 </Text>
                 <Text mb='30px'> {data.position} </Text>
-                <Text color='RGBA(0, 0, 0, 0.50)' fontSize='18px' fontWeight='bold'>
-                  Kỹ năng
-                </Text>
-                <Text mb='30px'> {data.requirements} </Text>
-                <Text color='RGBA(0, 0, 0, 0.50)' fontSize='18px' fontWeight='bold'>
+                {data.requirements && (
+                  <Fragment>
+                    <Text fontSize='18px' fontWeight='bold'>
+                      Kỹ năng
+                    </Text>
+                    <Text mb='30px'>
+                      {data.requirements.split('\n').map((item, index) => (
+                        <Fragment key={index}>
+                          {item}
+                          <br />
+                        </Fragment>
+                      ))}
+                    </Text>
+                  </Fragment>
+                )}
+
+                <Text fontSize='18px' fontWeight='bold'>
                   Địa chỉ Doanh nghiệp
                 </Text>
                 <Text mb='30px'> {data.detailLocation} </Text>
-                <Text color='RGBA(0, 0, 0, 0.50)' fontSize='18px' fontWeight='bold'>
-                  Quyền lợi
-                </Text>
-                <Text mb='30px'> {data.interest} </Text>
-                <Text fontWeight='bold' fontSize='18px'>
-                  {' '}
-                  Mô tả công việc{' '}
-                </Text>
-                <Text mb='10px'> {data.workingForm} </Text>
-                <Text mb='30px'> {data.detailJob} </Text>
+                {data.interest && (
+                  <Fragment>
+                    <Text fontSize='18px' fontWeight='bold'>
+                      Quyền lợi
+                    </Text>
+                    <Text mb='30px'>
+                      {data.interest.split('\n').map((item, index) => (
+                        <Fragment key={index}>
+                          {item}
+                          <br />
+                        </Fragment>
+                      ))}
+                    </Text>
+                  </Fragment>
+                )}
+                {data.detailJob && (
+                  <Fragment>
+                    <Text fontWeight='bold' fontSize='18px'>
+                      Mô tả công việc
+                    </Text>
+                    <Text mb='10px'> {data.workingForm} </Text>
+                    <Text mb='30px'>
+                      {data.detailJob.split('\n').map((item, index) => (
+                        <Fragment key={index}>
+                          {item}
+                          <br />
+                        </Fragment>
+                      ))}
+                    </Text>
+                  </Fragment>
+                )}
               </Box>
             </Box>
           </Box>
           <Box width='400px' height='400px'>
-            <Box p='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'>
+            <Box borderRadius={7} p='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'>
               <Text fontSize='18px' mb='20px' fontWeight='bold'>
-                {' '}
-                Jobs you might be interested in
+                Genaral information
               </Text>
-              <Text fontSize='15px' fontWeight='bold'>
-                {' '}
-                DTP Operator
-              </Text>
-
-              <Text display='flex' textAlign='center'>
-                {' '}
-                <Text fontSize='13px' mt='1px' mr='10px'>
-                  {' '}
-                  Brilliant Prakashan{' '}
-                </Text>{' '}
-                4.1{' '}
-                <Text mt='2.5px' color='orange' ml='2px' mr='10px'>
-                  {' '}
-                  <BsFillStarFill />{' '}
-                </Text>{' '}
-                (41 reviews)
-              </Text>
-              <Text display='flex' alignContent='center'>
-                <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
-                  {' '}
-                  <CiLocationOn />{' '}
-                </Box>{' '}
-                {data.location}{' '}
-              </Text>
-              <Text ml='70%' mb='20px'>
-                19 days ago
-              </Text>
-              <hr />
-
-              <Text fontSize='15px' fontWeight='bold'>
-                {' '}
-                DTP Operator
-              </Text>
-
-              <Text display='flex' textAlign='center'>
-                {' '}
-                <Text fontSize='13px' mt='1px' mr='10px'>
-                  {' '}
-                  Physicswallah{' '}
-                </Text>{' '}
-                4.1{' '}
-                <Text mt='2.5px' color='orange' ml='2px' mr='10px'>
-                  {' '}
-                  <BsFillStarFill />{' '}
-                </Text>{' '}
-                (41 reviews)
-              </Text>
-              <Text display='flex' alignContent='center'>
-                <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
-                  {' '}
-                  <CiLocationOn />{' '}
-                </Box>{' '}
-                Siliguri{' '}
-              </Text>
-              <Text ml='70%' mb='20px'>
-                5 days ago
-              </Text>
-              <hr />
-
-              <Text fontSize='15px' fontWeight='bold'>
-                {' '}
-                DTP Designer
-              </Text>
-              <Text display='flex' textAlign='center'>
-                {' '}
-                <Text fontSize='13px' mt='1px' mr='10px'>
-                  {' '}
-                  Edwiser Innovation Hub Pvt.{' '}
-                </Text>{' '}
-                4.1{' '}
-                <Text mt='2.5px' color='orange' ml='2px' mr='10px'>
-                  {' '}
-                  <BsFillStarFill />{' '}
-                </Text>{' '}
-                (41 reviews)
-              </Text>
-              <Text display='flex' alignContent='center'>
-                <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
-                  {' '}
-                  <CiLocationOn />{' '}
-                </Box>{' '}
-                Hydrabad{' '}
-              </Text>
-              <Text ml='70%' mb='20px'>
-                1 day ago
-              </Text>
-              <hr />
-
-              <Text mt='5px' fontWeight='bold' color='blue.500'>
-                View All
-              </Text>
-            </Box>
-            <Box p='20px' mt='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'>
-              <Text fontSize='18px' mb='20px' fontWeight='bold'>
-                {' '}
-                Reviews
-              </Text>
-              <Text fontSize='15px' fontWeight='bold'>
-                {' '}
-                H.O.D Mathematics in Rachi
-              </Text>
-
-              <Text display='flex' textAlign='center'>
-                {' '}
-                <Text fontSize='13px' mt='1px' mr='10px'>
-                  {' '}
-                  Anonymous{' '}
-                </Text>{' '}
-                <Text mt='2.5px' color='orange' ml='2px' mr='10px'>
-                  {' '}
+              <Box mb={2}>
+                <Text fontSize='15px' fontWeight='bold'>
+                  Cấp bậc
                 </Text>
-              </Text>
-              <Box display='flex' mt='2' alignItems='center'>
-                {Array(5)
-                  .fill('')
-                  .map((_, i) => (
-                    <BsFillStarFill key={i} color={i < 3 ? 'orange' : 'yellow'} />
-                  ))}
+                <Text display='flex' alignContent='center'>
+                  <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
+                    <IoMedalOutline />
+                  </Box>
+                  <Text>{data.position}</Text>
+                </Text>
               </Box>
 
-              <Text ml='70%' mb='20px'>
-                19 days ago
-              </Text>
-              <Text fontSize='16px' fontWeight='bold'>
-                Likes
-              </Text>
-              <Text fontSize='16px'>Only Clear envirment</Text>
-              <hr />
+              <Box mb={2}>
+                <Text fontSize='15px' fontWeight='bold'>
+                  Kinh nghiệm
+                </Text>
+                <Text display='flex' alignContent='center'>
+                  <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
+                    <IoHourglassOutline />
+                  </Box>
+                  <Text>{data.experience}</Text>
+                </Text>
+              </Box>
 
-              <Text mt='5px' fontWeight='bold' color='blue.500'>
-                View All
+              <Box mb={2}>
+                <Text fontSize='15px' fontWeight='bold'>
+                  Số lượng tuyển
+                </Text>
+                <Text display='flex' alignContent='center'>
+                  <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
+                    <AiOutlineUsergroupAdd />
+                  </Box>
+                  <Text>{data.number}</Text>
+                </Text>
+              </Box>
+
+              <Box mb={2}>
+                <Text fontSize='15px' fontWeight='bold'>
+                  Hình thức làm việc
+                </Text>
+                <Text display='flex' alignContent='center'>
+                  <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
+                    <IoBriefcaseOutline />
+                  </Box>
+                  <Text>{data.workingForm}</Text>
+                </Text>
+              </Box>
+              <Box mb={2}>
+                <Text fontSize='15px' fontWeight='bold'>
+                  Giới tính
+                </Text>
+                <Text display='flex' alignContent='center'>
+                  <Box mt='4px' mr='15px' color='RGBA(0, 0, 0, 0.36)'>
+                    <AiOutlineUser />
+                  </Box>
+                  <Text>{data.sex}</Text>
+                </Text>
+              </Box>
+            </Box>
+
+            <Box borderRadius={7} p='20px' mt='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'>
+              <Text fontSize='18px' mb='20px' fontWeight='bold'>
+                Company
               </Text>
+              {company[0] && (
+                <Fragment>
+                  <Image mb={2} src={company[0].avatar} />
+                  <Text fontSize='15px' fontWeight='bold'>
+                    {company[0].name}
+                  </Text>
+
+                  <Text display='flex' textAlign='center'>
+                    <Text fontSize='13px' mt='1px' mr='10px'>
+                      {company[0].address}
+                    </Text>
+                    <Text mt='2.5px' color='orange' ml='2px' mr='10px'></Text>
+                  </Text>
+                  <Text mt='5px' fontWeight='bold' color='blue.500'>
+                    <Link href='/ss'>View</Link>
+                  </Text>
+                </Fragment>
+              )}
             </Box>
           </Box>
         </Box>

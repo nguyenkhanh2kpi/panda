@@ -3,7 +3,7 @@ import React from "react";
 import CompaniesContainer from "./CompaniesContainer";
 
 const Companies = () => (
-  <VStack backgroundColor={"#e9f3f5"}>
+  <VStack>
     <SlideFade in={true} offsetY={20}>
       <Heading size={"lg"} m={"6"} mt={24}>
       </Heading>

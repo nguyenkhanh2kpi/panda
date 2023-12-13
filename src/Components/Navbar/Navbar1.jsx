@@ -13,7 +13,7 @@ const Navbar1 = () => {
   const data = JSON.parse(localStorage.getItem('data'))
 
   return (
-    <Box as={Container} zIndex='3' top='0' maxW='100%' h={'72px'} position='fixed' bgColor='white' mb='150px'>
+    <Box fontFamily={'Montserrat'} as={Container} zIndex='3' top='0' maxW='100%' h={'72px'} position='fixed' bgColor='white' mb='150px'>
       <Flex direction='row' w='80%' h='100%' m='auto' display='flex'>
         <Box w={'150px'} h={'100%'} display={'flex'} alignItems={'center'} justifyContent={'center'} cursor={'pointer'}>
           <Link to='/'>
@@ -56,7 +56,7 @@ const Navbar1 = () => {
             </Menu>
           </Box>
 
-          <Box h={'100%'} display={'flex'} w={'33.3%'} alignItems={'center'} justifyContent={'center'} fontWeight={'500'} lineHeight={'20px'} color={'#445578'} cursor={'pointer'}>
+          <Box h={'100%'} display={'flex'} w={'auto'} alignItems={'center'} justifyContent={'center'} fontWeight={'500'} lineHeight={'20px'} color={'#445578'} cursor={'pointer'}>
             <Menu isOpen={companies.isOpen}>
               <MenuButton
                 onClick={() => navigate('/companies')}
@@ -72,7 +72,7 @@ const Navbar1 = () => {
                 color={'#445578'}>
                 Companies
               </MenuButton>
-              <MenuList onMouseEnter={companies.onOpen} onMouseLeave={companies.onClose}>
+              {/* <MenuList onMouseEnter={companies.onOpen} onMouseLeave={companies.onClose}>
                 <MenuItem
                   _hover={{
                     color: '#457eff',
@@ -81,7 +81,7 @@ const Navbar1 = () => {
                   color={'#445578'}>
                   Unicorn
                 </MenuItem>
-              </MenuList>
+              </MenuList> */}
             </Menu>
           </Box>
 
@@ -102,7 +102,7 @@ const Navbar1 = () => {
             </Menu>
           </Box>
 
-          <Box h={'100%'} display={'flex'} w={'33.3%'} alignItems={'center'} justifyContent={'center'} fontWeight={'500'} lineHeight={'20px'} color={'#445578'} cursor={'pointer'}>
+          <Box h={'100%'} display={'flex'} w={'auto'} alignItems={'center'} justifyContent={'center'} fontWeight={'500'} lineHeight={'20px'} color={'#445578'} cursor={'pointer'}>
             <Menu isOpen={services.isOpen}>
               <MenuButton
                 onClick={() => navigate('/cv-build')}
@@ -206,11 +206,10 @@ const Navbar1 = () => {
                 h={'40px'}
                 w={'auto'}
                 fontWeight={'600'}
-                // onclick={()=>navigate("/login")}
               >
                 <Link to='/userInfo'>{data.data.username}</Link>
               </Button>
-              <Button border={'none'} borderRadius={'50px'} color={'white'} borderColor={'#ff7555'} bgColor={'#ff7555'} w={'100px'}>
+              <Button ml={2} border={'none'} borderRadius={'50px'} color={'white'} borderColor={'#ff7555'} bgColor={'#ff7555'} w={'100px'}>
                 <Link to='/logout'>Log Out</Link>
               </Button>
             </div>
@@ -225,11 +224,10 @@ const Navbar1 = () => {
                 h={'40px'}
                 w={'80px'}
                 fontWeight={'600'}
-                // onclick={()=>navigate("/login")}
               >
                 <Link to='/login'>Login</Link>
               </Button>
-              <Button border={'none'} borderRadius={'50px'} color={'white'} borderColor={'#ff7555'} bgColor={'#ff7555'} w={'100px'}>
+              <Button ml={2} border={'none'} borderRadius={'50px'} color={'white'} borderColor={'#ff7555'} bgColor={'#ff7555'} w={'100px'}>
                 <Link to='/signup'>Register</Link>
               </Button>
             </div>

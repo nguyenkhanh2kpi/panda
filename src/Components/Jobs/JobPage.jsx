@@ -72,8 +72,8 @@ const JobPage = () => {
             onClick={() => navigate(`/jobDetail/${job.id}`)}
             key={job.id}
             maxW='sm'
-            borderWidth='1px'
             borderRadius='lg'
+            fontFamily={'Montserrat'}
             overflow='hidden'>
             <Image w={'100%'} h={164} src={job.image} fallbackSrc='https://static.tintuc.com.vn/images/ver3/2020/02/06/1580924892844-screenshot-135.png' />
 
@@ -89,22 +89,37 @@ const JobPage = () => {
               </Box>
 
               <Box display='flex'>
-                <BiDollarCircle />
-                <Box as='span' color='gray.600' fontSize='sm'>
+                <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-6 h-6'>
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z'
+                  />
+                </svg>
+                <Box ml={2} as='span' color='gray.600' fontSize='sm'>
                   {job.salary}
                 </Box>
               </Box>
 
               <Box display='flex' mt='2' alignItems='center'>
-                <BiLocationPlus />
-                <Box as='span' color='gray.600' fontSize='sm'>
+                <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-6 h-6'>
+                  <path strokeLinecap='round' strokeLinejoin='round' d='M15 10.5a3 3 0 11-6 0 3 3 0 016 0z' />
+                  <path strokeLinecap='round' strokeLinejoin='round' d='M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z' />
+                </svg>
+                <Box ml={2} as='span' color='gray.600' fontSize='sm'>
                   {job.location}
                 </Box>
               </Box>
 
               <Box display='flex' mt='2' alignItems='center'>
-                <BsCalendar2DayFill />
-                <Box as='span' color='gray.600' fontSize='sm'>
+                <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' strokeWidth={1.5} stroke='currentColor' className='w-6 h-6'>
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    d='M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z'
+                  />
+                </svg>
+                <Box ml={2} as='span' color='gray.600' fontSize='sm'>
                   {job.workingForm}
                 </Box>
               </Box>
@@ -122,7 +137,7 @@ const JobPage = () => {
 
   return (
     <>
-      <Box alignItems={'center'} w={'100%'}>
+      <Box mb={10} fontFamily={'Montserrat'} alignItems={'center'} w={'100%'}>
         <VStack>
           <Box mt='120px' fontWeight='bold' width='80%' fontSize='20px'>
             <Container h={'70px'} maxW={'100%'}>

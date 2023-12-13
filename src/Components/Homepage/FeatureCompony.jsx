@@ -21,7 +21,7 @@ const FeatureCompony = () => {
   }, [])
   return (
     <Box>
-      <Heading mt={10} mb={10} textAlign='center'>
+      <Heading fontFamily={'Montserrat'} mt={10} mb={10} textAlign='center'>
         Featured companies actively hiring
       </Heading>
       <Box className='container py-4 px-4 justify-conten-center '>
@@ -58,21 +58,33 @@ const FeatureCompony = () => {
             .map((company) => (
               <SwiperSlide>
                 <div>
-                  <Box onClick={() => navigate(`/companies/${company.id}`)} maxW='sm' orderWidth='1px' borderRadius='lg' overflow='hidden'>
-                    <Image src={company.avatar} fallbackSrc='https://static.tintuc.com.vn/images/ver3/2020/02/06/1580924892844-screenshot-135.png' />
+                  <Box
+                    _hover={{
+                      boxShadow: 'xl',
+                      transition: 'all 0.2s ease-in-out',
+                      transform: 'translate(2px, -5px)',
+                    }}
+                    onClick={() => navigate(`/companies/${company.id}`)}
+                    maxW='sm'
+                    orderWidth='1px'
+                    borderRadius={20}
+                    mt={5}
+                    overflow='hidden'
+                    fontFamily={'Montserrat'}>
+                    <Image h={146} w={310} src={company.avatar} fallbackSrc='https://static.tintuc.com.vn/images/ver3/2020/02/06/1580924892844-screenshot-135.png' />
 
                     <Box p='6'>
-                      <Box display='flex' alignItems='baseline'>
+                      <Box mt={2} display='flex' alignItems='baseline'>
                         <Box color='gray.500' fontWeight='semibold' letterSpacing='wide' fontSize='xs' textTransform='uppercase'>
                           {company.website}
                         </Box>
                       </Box>
 
-                      <Box mt='1' fontWeight='semibold' as='h4' lineHeight='tight' noOfLines={1}>
+                      <Box mt={2} fontWeight='semibold' as='h4' lineHeight='tight' noOfLines={1}>
                         {company.name}
                       </Box>
 
-                      <Box>
+                      <Box mt={2}>
                         {company.phone}
                         <Box as='span' color='gray.600' fontSize='sm'></Box>
                       </Box>
@@ -84,7 +96,7 @@ const FeatureCompony = () => {
             .slice(-10)}
         </Swiper>
         <Container textAlign='center' mt={10}>
-          <Button onClick={() => navigate('/companies')} border='1px solid teal' p={7} borderRadius='30%' bg='white' color='teal' fontWeight='bold'>
+          <Button fontFamily={'Montserrat'} onClick={() => navigate('/companies')} border='1px solid teal' p={7} borderRadius={20} bg='white' color='teal' fontWeight='bold'>
             View All compony
           </Button>
         </Container>

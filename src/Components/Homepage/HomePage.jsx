@@ -36,7 +36,7 @@ const HomePage = () => {
   return (
     <Box>
       <Container mb={'28px'} h={'80px'} maxW={'100%'}>
-        <Heading textAlign={'center'} fontWeight={'700'} fontSize={'35px'} lineHeight={'50px'} mb={'6px'} mt={'104px'}>
+        <Heading fontFamily={'Montserrat'} textAlign={'center'} fontWeight={'700'} fontSize={'35px'} lineHeight={'50px'} mb={'6px'} mt={'104px'}>
           Tìm việc làm nhanh 24h, việc làm mới nhất
         </Heading>
       </Container>
@@ -46,10 +46,10 @@ const HomePage = () => {
             <Image mr={'8px'} w={'20px'} h={'20px'} src='https://static.naukimg.com/s/7/103/i/search.9ec0e1ac.svg' />
           </Box>
           <Box w={'340px'} h={'100%'} pr={'12px'} py={'4px'} pl={'4px'}>
-            <Input value={search.keyword} name='keyword' onChange={handleChangeSearch} border={'none'} color={'#8292b4'} placeholder='vị trí tuyển dụng' />
+            <Input fontFamily={'Montserrat'} value={search.keyword} name='keyword' onChange={handleChangeSearch} border={'none'} color={'#8292b4'} placeholder='vị trí tuyển dụng' />
           </Box>
           <Box w={'223px'} h={'100%'} pr={'0px'} pt={'4px'} pl={'10px'} pb={'6px'}>
-            <Select onChange={handleChangeSearch} name='location' color={'#8292b4'} border={'none'} defaultValue='all'>
+            <Select fontFamily={'Montserrat'} onChange={handleChangeSearch} name='location' color={'#8292b4'} border={'none'} defaultValue='all'>
               <option value='all'>Địa điểm</option>
               <option value='Hồ Chí Minh'>Hồ Chí Minh</option>
               <option value='Đà Nẵng'>Đà Nẵng</option>
@@ -57,7 +57,7 @@ const HomePage = () => {
             </Select>
           </Box>
           <Box w={'223px'} h={'100%'} pr={'0px'} pt={'4px'} pl={'10px'} pb={'6px'}>
-            <Select onChange={handleChangeSearch} name='experience' color={'#8292b4'} border={'none'} defaultValue='all'>
+            <Select fontFamily={'Montserrat'} onChange={handleChangeSearch} name='experience' color={'#8292b4'} border={'none'} defaultValue='all'>
               <option value='all'>Kinh nghiệm</option>
               <option value='chưa có'>chưa có</option>
               <option value='dưới 1 năm'>dưới 1 năm</option>
@@ -70,7 +70,7 @@ const HomePage = () => {
             </Select>
           </Box>
           <Box w={'223px'} h={'100%'} pr={'0px'} pt={'4px'} pl={'10px'} pb={'6px'}>
-            <Select onChange={handleChangeSearch} name='salary' color={'#8292b4'} border={'none'} defaultValue='all'>
+            <Select fontFamily={'Montserrat'} onChange={handleChangeSearch} name='salary' color={'#8292b4'} border={'none'} defaultValue='all'>
               <option value='all'>Mức lương</option>
               <option value='Dưới 10 triệu'>Dưới 10 triệu</option>
               <option value='10 -15 triệu'>10 -15 triệu</option>
@@ -82,7 +82,7 @@ const HomePage = () => {
               <option value='thỏa thuận'>thỏa thuận</option>
             </Select>
           </Box>
-          <Button onClick={handleSearch} color={'white'} fontWeight={'600'} fontSize={'19px'} bgColor={'#457eff'} borderRadius={'50px'} h={'48px'} w={'120px'} px={'28px'} py={'11px'}>
+          <Button fontFamily={'Montserrat'} onClick={handleSearch} color={'white'} fontWeight={'600'} fontSize={'19px'} bgColor={'#457eff'} borderRadius={'50px'} h={'48px'} w={'120px'} px={'28px'} py={'11px'}>
             Search
           </Button>
         </Flex>
