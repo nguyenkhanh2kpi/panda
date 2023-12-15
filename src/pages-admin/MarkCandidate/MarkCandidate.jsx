@@ -1,7 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { interviewService } from '../../Service/interview.service'
 import { useParams } from 'react-router-dom'
-import { Heading, HStack, SlideFade, VStack, Image, Text, Button, Wrap, WrapItem, Avatar, FormLabel, Input, Select, Box, SimpleGrid, Link, Spacer, Skeleton } from '@chakra-ui/react'
+import {
+  Heading,
+  HStack,
+  SlideFade,
+  VStack,
+  Image,
+  Text,
+  Button,
+  Wrap,
+  WrapItem,
+  Avatar,
+  FormLabel,
+  Input,
+  Select,
+  Box,
+  SimpleGrid,
+  Link,
+  Spacer,
+  Skeleton,
+} from '@chakra-ui/react'
 import { MarkItem } from './MarkItem'
 import { interviewDetailService } from '../../Service/interviewDetail.service'
 
@@ -66,13 +85,30 @@ export const MarkCandidate = () => {
   } else
     return (
       <>
-        <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
+        <Box
+          fontFamily={'Montserrat'}
+          fontWeight={400}
+          backgroundColor={'#e9f3f5'}
+          p={30}
+          overflow='hidden'>
           <VStack spacing={3}>
             <Box p={4} borderRadius='lg' backgroundColor={'#FFFFFF'} w={'100%'} h={'230px'} mb={20}>
               <HStack h={'100%'}>
-                <Image borderRadius='lg' m={2} h={'100%'} w={'18%'} src='https://www.peninsulapersonnel.com.au/wp-content/uploads/2020/09/Best-HR-Interview-1.png' alt='Dan Abramov' />
+                <Image
+                  borderRadius='lg'
+                  m={2}
+                  h={'100%'}
+                  w={'18%'}
+                  src='https://www.peninsulapersonnel.com.au/wp-content/uploads/2020/09/Best-HR-Interview-1.png'
+                  alt='Dan Abramov'
+                />
                 <VStack h={'100%'} w={'82%'} p={2}>
-                  <HStack backgroundColor={'#FFFFFF'} w={'100%'} p={2} justifyContent={'space-between'} mb={0}>
+                  <HStack
+                    backgroundColor={'#FFFFFF'}
+                    w={'100%'}
+                    p={2}
+                    justifyContent={'space-between'}
+                    mb={0}>
                     <Text fontSize={27} fontWeight={'bold'}>
                       {room.roomName}
                     </Text>
@@ -89,7 +125,10 @@ export const MarkCandidate = () => {
                       {room.startDate}
                     </Button>
                     <Button size='sm' colorScheme='blue' variant='outline'>
-                      {room.listCandidate && Array.isArray(room.listCandidate) ? room.listCandidate.length : 0} Candidate
+                      {room.listCandidate && Array.isArray(room.listCandidate)
+                        ? room.listCandidate.length
+                        : 0}{' '}
+                      Candidate
                     </Button>
                     <Wrap ml={20}>
                       {room.listCandidate.map((candidate) => (
@@ -112,7 +151,14 @@ export const MarkCandidate = () => {
               List Candidate
             </Text>
 
-            <Box overflow={'auto'} mt={0} p={6} borderRadius='lg' w={'100%'} backgroundColor={'#FFFFFF'} h={80}>
+            <Box
+              overflow={'auto'}
+              mt={0}
+              p={6}
+              borderRadius='lg'
+              w={'100%'}
+              backgroundColor={'#FFFFFF'}
+              h={80}>
               <SimpleGrid columns={[2, null, 3]} spacing='10px'>
                 {room.listCandidate.map((cadidate) => (
                   <Box
@@ -138,7 +184,11 @@ export const MarkCandidate = () => {
                       </VStack>
 
                       <VStack justifyContent='flex-start'>
-                        <Button p={1} h={'100%'} colorScheme={cadidate.status === 'Đã chấm' ? 'green' : 'red'} size='xs'>
+                        <Button
+                          p={1}
+                          h={'100%'}
+                          colorScheme={cadidate.status === 'Đã chấm' ? 'green' : 'red'}
+                          size='xs'>
                           {cadidate.status}
                         </Button>
                       </VStack>

@@ -1,9 +1,40 @@
 import React from 'react'
-import { AiOutlineCalendar, AiOutlineShoppingCart, AiOutlineAreaChart, AiOutlineBarChart, AiOutlineStock, AiOutlineTeam } from 'react-icons/ai'
-import { FiShoppingBag, FiEdit, FiPieChart, FiBarChart, FiCreditCard, FiStar, FiShoppingCart, FiBookOpen } from 'react-icons/fi'
-import { BsKanban, BsBarChart, BsBoxSeam, BsCurrencyDollar, BsShield, BsChatLeft } from 'react-icons/bs'
+import {
+  AiOutlineCalendar,
+  AiOutlineShoppingCart,
+  AiOutlineAreaChart,
+  AiOutlineBarChart,
+  AiOutlineStock,
+  AiOutlineTeam,
+} from 'react-icons/ai'
+import {
+  FiShoppingBag,
+  FiEdit,
+  FiPieChart,
+  FiBarChart,
+  FiCreditCard,
+  FiStar,
+  FiShoppingCart,
+  FiBookOpen,
+} from 'react-icons/fi'
+import {
+  BsKanban,
+  BsBarChart,
+  BsBoxSeam,
+  BsCurrencyDollar,
+  BsShield,
+  BsChatLeft,
+  BsPeople,
+} from 'react-icons/bs'
 import { MdAccessibilityNew } from 'react-icons/md'
-import { BiAlignLeft, BiBriefcase, BiBuilding, BiCalendarCheck, BiColorFill, BiNews, BiVideo } from 'react-icons/bi'
+import {
+  BiBriefcase,
+  BiBuilding,
+  BiCalendarCheck,
+  BiColorFill,
+  BiNews,
+  BiVideo,
+} from 'react-icons/bi'
 import { IoMdContacts } from 'react-icons/io'
 import { RiContactsLine, RiStockLine } from 'react-icons/ri'
 import { MdOutlineSupervisorAccount } from 'react-icons/md'
@@ -39,7 +70,10 @@ export const gridOrderImage = (props) => (
 )
 
 export const gridOrderStatus = (props) => (
-  <button type='button' style={{ background: props.StatusBg }} className='text-white py-1 px-2 capitalize rounded-2xl text-md'>
+  <button
+    type='button'
+    style={{ background: props.StatusBg }}
+    className='text-white py-1 px-2 capitalize rounded-2xl text-md'>
     {props.Status}
   </button>
 )
@@ -69,21 +103,42 @@ const gridEmployeeCountry = (props) => (
 export const EditorData = () => (
   <div>
     <h3>
-      Try React React has been designed from the start for gradual adoption, and you can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you
-      get started. Online Playgrounds If you’re interested in playing around with React, you can use an online code playground. Try a Hello World template on CodePen, CodeSandbox, or Stackblitz. If you prefer to use your own text editor, you can also download this HTML file, edit it, and open it
-      from the local filesystem in your browser. It does a slow runtime code transformation, so we’d only recommend using this for simple demos. Add React to a Website You can add React to an HTML page in one minute. You can then either gradually expand its presence, or keep it contained to a few
-      dynamic widgets. Create a New React App When starting a React project, a simple HTML page with script tags might still be the best option. It only takes a minute to set up! As your application grows, you might want to consider a more integrated setup. There are several JavaScript toolchains we
-      recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem. Learn how. Learn React People come to React from different backgrounds and with different learning styles. Whether you prefer a more
-      theoretical or a practical approach, we hope you’ll find this section helpful. If you prefer to learn by doing, start with our practical tutorial. If you prefer to learn concepts step by step, start with our guide to main concepts. Like any unfamiliar technology, React does have a learning
-      curve. With practice and some patience, you will get the hang of it. First Examples The React homepage contains a few small React examples with a live editor. Even if you don’t know anything about React yet, try changing their code and see how it affects the result. React for Beginners If you
-      feel that the React documentation goes at a faster pace than you’re comfortable with, check out this overview of React by Tania Rascia. It introduces the most important React concepts in a detailed, beginner-friendly way. Once you’re done, give the documentation another try! React for
-      Designers If you’re coming from a design background, these resources are a great place to get started. JavaScript Resources The React documentation assumes some familiarity with programming in the JavaScript language. You don’t have to be an expert, but it’s harder to learn both React and
-      JavaScript at the same time. We recommend going through this JavaScript overview to check your knowledge level. It will take you between 30 minutes and an hour but you will feel more confident learning React.
+      Try React React has been designed from the start for gradual adoption, and you can use as
+      little or as much React as you need. Whether you want to get a taste of React, add some
+      interactivity to a simple HTML page, or start a complex React-powered app, the links in this
+      section will help you get started. Online Playgrounds If you’re interested in playing around
+      with React, you can use an online code playground. Try a Hello World template on CodePen,
+      CodeSandbox, or Stackblitz. If you prefer to use your own text editor, you can also download
+      this HTML file, edit it, and open it from the local filesystem in your browser. It does a slow
+      runtime code transformation, so we’d only recommend using this for simple demos. Add React to
+      a Website You can add React to an HTML page in one minute. You can then either gradually
+      expand its presence, or keep it contained to a few dynamic widgets. Create a New React App
+      When starting a React project, a simple HTML page with script tags might still be the best
+      option. It only takes a minute to set up! As your application grows, you might want to
+      consider a more integrated setup. There are several JavaScript toolchains we recommend for
+      larger applications. Each of them can work with little to no configuration and lets you take
+      full advantage of the rich React ecosystem. Learn how. Learn React People come to React from
+      different backgrounds and with different learning styles. Whether you prefer a more
+      theoretical or a practical approach, we hope you’ll find this section helpful. If you prefer
+      to learn by doing, start with our practical tutorial. If you prefer to learn concepts step by
+      step, start with our guide to main concepts. Like any unfamiliar technology, React does have a
+      learning curve. With practice and some patience, you will get the hang of it. First Examples
+      The React homepage contains a few small React examples with a live editor. Even if you don’t
+      know anything about React yet, try changing their code and see how it affects the result.
+      React for Beginners If you feel that the React documentation goes at a faster pace than you’re
+      comfortable with, check out this overview of React by Tania Rascia. It introduces the most
+      important React concepts in a detailed, beginner-friendly way. Once you’re done, give the
+      documentation another try! React for Designers If you’re coming from a design background,
+      these resources are a great place to get started. JavaScript Resources The React documentation
+      assumes some familiarity with programming in the JavaScript language. You don’t have to be an
+      expert, but it’s harder to learn both React and JavaScript at the same time. We recommend
+      going through this JavaScript overview to check your knowledge level. It will take you between
+      30 minutes and an hour but you will feel more confident learning React.
     </h3>
   </div>
 )
 const customerGridImage = (props) => (
-  <div className='image flex items-center gap-2'>
+  <div style={{ fontFamily: 'Montserrat' }} className='image flex items-center gap-2'>
     {/* <img className='rounded-full w-10 h-10' src={props.avt} alt='employee' /> */}
     <Avatar name={props.name} src={props.avt} />
     <div>
@@ -94,16 +149,23 @@ const customerGridImage = (props) => (
 )
 
 const customerGridStatus = (props) => (
-  <div className='flex gap-2 justify-center items-center text-gray-700 capitalize'>
-    {props.status !== 'BLACKLIST' ? <p style={{ background: '#8BE78B' }} className='rounded-full h-3 w-3' /> : <p style={{ background: '#FF0000' }} className='rounded-full h-3 w-3' />}
+  <div
+    style={{ fontFamily: 'Montserrat' }}
+    className='flex gap-2 justify-center items-center text-gray-700 capitalize'>
+    {props.status !== 'BLACKLIST' ? (
+      <p style={{ background: '#8BE78B' }} className='rounded-full h-3 w-3' />
+    ) : (
+      <p style={{ background: '#FF0000' }} className='rounded-full h-3 w-3' />
+    )}
     <p>{props.status}</p>
   </div>
 )
 const ButtonAddBlackList = (props) => {
-  const accessToken = JSON.parse(localStorage.getItem('data')) !== null ? JSON.parse(localStorage.getItem('data')).access_token : null
+  const accessToken =
+    JSON.parse(localStorage.getItem('data')) !== null
+      ? JSON.parse(localStorage.getItem('data')).access_token
+      : null
   const HandleOnClick = (e) => {
-    console.log('ga qua', e.target.value)
-
     let data = JSON.stringify({
       userId: e.target.value,
       description: 'string',
@@ -410,7 +472,14 @@ export const LinePrimaryYAxis = {
 export const customersGrid = [
   { headerText: 'Name', width: '150', template: customerGridImage, textAlign: 'Center' },
   { field: 'permission', headerText: 'Role', width: '150', textAlign: 'Center' },
-  { field: 'status', headerText: 'Status', width: '130', format: 'yMd', textAlign: 'Center', template: customerGridStatus },
+  {
+    field: 'status',
+    headerText: 'Status',
+    width: '130',
+    format: 'yMd',
+    textAlign: 'Center',
+    template: customerGridStatus,
+  },
   {
     field: 'phone',
     headerText: 'Phone',
@@ -609,7 +678,7 @@ export const reccerLink = [
       },
       {
         title: 'Đăng tuyển dụng',
-        name: 'job-posting',
+        name: 'allJob_Recruiter',
         icon: <BiBriefcase />,
       },
       {
@@ -631,6 +700,11 @@ export const reccerLink = [
         title: 'Lịch trình của tôi',
         name: 'calendar-admin',
         icon: <BiCalendarCheck />,
+      },
+      {
+        title: 'Kết quả phỏng vấn',
+        name: 'result',
+        icon: <BsPeople />,
       },
     ],
   },
@@ -2192,7 +2266,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
-    ProductImage: 'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2202,7 +2277,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2212,7 +2288,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
-    ProductImage: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2222,7 +2299,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
-    ProductImage: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2232,7 +2310,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 10248,
@@ -2323,7 +2402,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
-    ProductImage: 'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2333,7 +2413,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2343,7 +2424,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
-    ProductImage: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2353,7 +2435,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
-    ProductImage: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2363,7 +2446,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 10248,
@@ -2454,7 +2538,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
-    ProductImage: 'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2464,7 +2549,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2474,7 +2560,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
-    ProductImage: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2484,7 +2571,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
-    ProductImage: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2494,7 +2582,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 10248,
@@ -2585,7 +2674,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
-    ProductImage: 'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2595,7 +2685,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2605,7 +2696,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
-    ProductImage: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2615,7 +2707,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
-    ProductImage: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2625,7 +2718,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 10248,
@@ -2716,7 +2810,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'pending',
     StatusBg: '#FB9678',
-    ProductImage: 'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
+    ProductImage:
+      'https://cdn.shopclues.com/images1/thumbnails/104158/320/320/148648730-104158193-1592481791.jpg',
   },
   {
     OrderID: 874534,
@@ -2726,7 +2821,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
   {
     OrderID: 38489,
@@ -2736,7 +2832,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'active',
     StatusBg: '#03C9D7',
-    ProductImage: 'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
+    ProductImage:
+      'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/dairy-free-ice-cream-eae372d.jpg',
   },
   {
     OrderID: 24546,
@@ -2746,7 +2843,8 @@ export const ordersData = [
     Location: 'Delhi',
     Status: 'complete',
     StatusBg: '#8BE78B',
-    ProductImage: 'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
+    ProductImage:
+      'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80',
   },
   {
     OrderID: 874534,
@@ -2756,7 +2854,8 @@ export const ordersData = [
     Location: 'USA',
     Status: 'canceled',
     StatusBg: '#FF5C8E',
-    ProductImage: 'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
+    ProductImage:
+      'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pop-womens-garmin-watches-1641919013.jpg?crop=0.502xw:1.00xh;0.250xw,0&resize=640:*',
   },
 ]
 
@@ -3008,11 +3107,35 @@ export const SparklineAreaData = [
 ]
 
 export const lineCustomSeries = [
-  { dataSource: lineChartData[0], xName: 'x', yName: 'y', name: 'Germany', width: '2', marker: { visible: true, width: 10, height: 10 }, type: 'Line' },
+  {
+    dataSource: lineChartData[0],
+    xName: 'x',
+    yName: 'y',
+    name: 'Germany',
+    width: '2',
+    marker: { visible: true, width: 10, height: 10 },
+    type: 'Line',
+  },
 
-  { dataSource: lineChartData[1], xName: 'x', yName: 'y', name: 'England', width: '2', marker: { visible: true, width: 10, height: 10 }, type: 'Line' },
+  {
+    dataSource: lineChartData[1],
+    xName: 'x',
+    yName: 'y',
+    name: 'England',
+    width: '2',
+    marker: { visible: true, width: 10, height: 10 },
+    type: 'Line',
+  },
 
-  { dataSource: lineChartData[2], xName: 'x', yName: 'y', name: 'India', width: '2', marker: { visible: true, width: 10, height: 10 }, type: 'Line' },
+  {
+    dataSource: lineChartData[2],
+    xName: 'x',
+    yName: 'y',
+    name: 'India',
+    width: '2',
+    marker: { visible: true, width: 10, height: 10 },
+    type: 'Line',
+  },
 ]
 
 export const pieChartData = [
@@ -3025,7 +3148,24 @@ export const pieChartData = [
   { x: 'Insurance', y: 16, text: '16%' },
 ]
 
-export const contextMenuItems = ['AutoFit', 'AutoFitAll', 'SortAscending', 'SortDescending', 'Copy', 'Edit', 'Delete', 'Save', 'Cancel', 'PdfExport', 'ExcelExport', 'CsvExport', 'FirstPage', 'PrevPage', 'LastPage', 'NextPage']
+export const contextMenuItems = [
+  'AutoFit',
+  'AutoFitAll',
+  'SortAscending',
+  'SortDescending',
+  'Copy',
+  'Edit',
+  'Delete',
+  'Save',
+  'Cancel',
+  'PdfExport',
+  'ExcelExport',
+  'CsvExport',
+  'FirstPage',
+  'PrevPage',
+  'LastPage',
+  'NextPage',
+]
 
 export const ecomPieChartData = [
   { x: '2018', y: 18, text: '35%' },
@@ -3056,9 +3196,23 @@ export const stackedChartData = [
 ]
 
 export const stackedCustomSeries = [
-  { dataSource: stackedChartData[0], xName: 'x', yName: 'y', name: 'Budget', type: 'StackingColumn', background: 'blue' },
+  {
+    dataSource: stackedChartData[0],
+    xName: 'x',
+    yName: 'y',
+    name: 'Budget',
+    type: 'StackingColumn',
+    background: 'blue',
+  },
 
-  { dataSource: stackedChartData[1], xName: 'x', yName: 'y', name: 'Expense', type: 'StackingColumn', background: 'red' },
+  {
+    dataSource: stackedChartData[1],
+    xName: 'x',
+    yName: 'y',
+    name: 'Expense',
+    type: 'StackingColumn',
+    background: 'red',
+  },
 ]
 
 export const stackedPrimaryXAxis = {

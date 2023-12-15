@@ -1,5 +1,25 @@
 import React, { useEffect, useState } from 'react'
-import { Heading, HStack, SlideFade, VStack, Image, Text, Button, Wrap, WrapItem, Avatar, FormLabel, Input, Select, Box, SimpleGrid, Link, Spacer, Textarea, Skeleton } from '@chakra-ui/react'
+import {
+  Heading,
+  HStack,
+  SlideFade,
+  VStack,
+  Image,
+  Text,
+  Button,
+  Wrap,
+  WrapItem,
+  Avatar,
+  FormLabel,
+  Input,
+  Select,
+  Box,
+  SimpleGrid,
+  Link,
+  Spacer,
+  Textarea,
+  Skeleton,
+} from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import { QuestionMarkItem } from './QuestionMarkItem'
 import { interviewDetailService } from '../../Service/interviewDetail.service'
@@ -90,7 +110,10 @@ export const MarkItem = ({ roomId, loadDetail, isClick }) => {
   const handleAddQuestion = (id, newQuestion, mark, type) => {
     setForm((prevQuestion) => ({
       ...prevQuestion,
-      [`${type}Question`]: [...prevQuestion[`${type}Question`], { id: id, question: newQuestion, mark: mark }],
+      [`${type}Question`]: [
+        ...prevQuestion[`${type}Question`],
+        { id: id, question: newQuestion, mark: mark },
+      ],
     }))
   }
 
@@ -131,7 +154,13 @@ export const MarkItem = ({ roomId, loadDetail, isClick }) => {
     )
   else
     return (
-      <Box p={9} borderRadius='lg' w={'100%'} backgroundColor={'#FFFFFF'}>
+      <Box
+        fontFamily={'Montserrat'}
+        fontWeight={400}
+        p={9}
+        borderRadius='lg'
+        w={'100%'}
+        backgroundColor={'#FFFFFF'}>
         <VStack>
           <Box p={10} borderRadius={4} w={'100%'} borderWidth={1}>
             <Text fontWeight={'black'}>
@@ -151,13 +180,28 @@ export const MarkItem = ({ roomId, loadDetail, isClick }) => {
             <VStack justifyContent={'flex-start'} spacing={5}>
               <HStack w={'100%'}>
                 <FormLabel w={'80px'}>Name</FormLabel>
-                <Input value={loadDetail.candidate.name ? loadDetail.candidate.name : ''} disabled={true} w={'400px'} placeholder='name' />
+                <Input
+                  value={loadDetail.candidate.name ? loadDetail.candidate.name : ''}
+                  disabled={true}
+                  w={'400px'}
+                  placeholder='name'
+                />
               </HStack>
               <HStack w={'100%'}>
                 <FormLabel w={'80px'}>Email</FormLabel>
-                <Input value={loadDetail.candidate.email} disabled={true} w={'400px'} placeholder='email' />
+                <Input
+                  value={loadDetail.candidate.email}
+                  disabled={true}
+                  w={'400px'}
+                  placeholder='email'
+                />
                 <FormLabel w={'60px'}>Status</FormLabel>
-                <Input value={loadDetail.candidate.status} disabled={true} w={'165px'} placeholder='status' />
+                <Input
+                  value={loadDetail.candidate.status}
+                  disabled={true}
+                  w={'165px'}
+                  placeholder='status'
+                />
               </HStack>
             </VStack>
             <br />
@@ -168,27 +212,71 @@ export const MarkItem = ({ roomId, loadDetail, isClick }) => {
             <VStack justifyContent={'flex-start'} spacing={5}>
               <HStack w={'100%'}>
                 <FormLabel w={'20%'}>Average Mark</FormLabel>
-                <Input name='averageMark' onChange={handleOnChangeForm} value={avg} disabled={true} type='number' w={'80%'} placeholder='mark' />
+                <Input
+                  name='averageMark'
+                  onChange={handleOnChangeForm}
+                  value={avg}
+                  disabled={true}
+                  type='number'
+                  w={'80%'}
+                  placeholder='mark'
+                />
               </HStack>
 
-              <QuestionMarkItem field='Language' question={form.englishQuestion} onAddClick={handleAddQuestion} onDeleteClick={handleDeleteQuestion} />
-              <QuestionMarkItem field='TechSkill' question={form.technicalQuestion} onAddClick={handleAddQuestion} onDeleteClick={handleDeleteQuestion} />
-              <QuestionMarkItem field='SoftSkill' question={form.softSkillQuestion} onAddClick={handleAddQuestion} onDeleteClick={handleDeleteQuestion} />
+              <QuestionMarkItem
+                field='Language'
+                question={form.englishQuestion}
+                onAddClick={handleAddQuestion}
+                onDeleteClick={handleDeleteQuestion}
+              />
+              <QuestionMarkItem
+                field='TechSkill'
+                question={form.technicalQuestion}
+                onAddClick={handleAddQuestion}
+                onDeleteClick={handleDeleteQuestion}
+              />
+              <QuestionMarkItem
+                field='SoftSkill'
+                question={form.softSkillQuestion}
+                onAddClick={handleAddQuestion}
+                onDeleteClick={handleDeleteQuestion}
+              />
 
               <HStack w={'100%'}>
                 <FormLabel w={'20%'}>Comment</FormLabel>
-                <Textarea name='comment' onChange={handleOnChangeForm} value={form.comment} w={'80%'} placeholder='comment' />
+                <Textarea
+                  name='comment'
+                  onChange={handleOnChangeForm}
+                  value={form.comment}
+                  w={'80%'}
+                  placeholder='comment'
+                />
               </HStack>
 
               <HStack display={'flex'}>
-                <Button color={"#ffffff"} w={100} backgroundColor={'rgb(3, 201, 215)'} onClick={handleMark}>
+                <Button
+                  color={'#ffffff'}
+                  w={100}
+                  backgroundColor={'rgb(3, 201, 215)'}
+                  onClick={handleMark}>
                   Mark
                 </Button>
               </HStack>
             </VStack>
           </Box>
         </VStack>
-        <ToastContainer position='bottom-right' autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme='light' />
+        <ToastContainer
+          position='bottom-right'
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme='light'
+        />
       </Box>
     )
 }

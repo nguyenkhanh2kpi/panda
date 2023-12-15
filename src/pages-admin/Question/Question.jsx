@@ -1,6 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { Header } from '../../Components-admin'
-import { Box, IconButton, List, ListIcon, ListItem, Skeleton, Stack, Text, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  IconButton,
+  List,
+  ListIcon,
+  ListItem,
+  Skeleton,
+  Stack,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
 import { MdCheckCircle, MdSettings } from 'react-icons/md'
 import { questionService } from '../../Service/question.service'
 import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns'
@@ -83,9 +93,12 @@ export const Question = () => {
 
   useEffect(() => {
     const filteredData = allQuestions.filter((question) => {
-      const fieldMatch = filter.fieldId === 0 || question.fieldEnum === dropdownField.find((item) => item.id === filter.fieldId)?.field
+      const fieldMatch =
+        filter.fieldId === 0 ||
+        question.fieldEnum === dropdownField.find((item) => item.id === filter.fieldId)?.field
       const skillMatch = filter.skillId === 0 || question.skillIds.includes(filter.skillId)
-      const positionMatch = filter.positionId === 0 || question.positionIds.includes(filter.positionId)
+      const positionMatch =
+        filter.positionId === 0 || question.positionIds.includes(filter.positionId)
       return fieldMatch && skillMatch && positionMatch
     })
     setFilteredQuestions(filteredData)
@@ -98,7 +111,17 @@ export const Question = () => {
     }
     return (
       <div className='w-28 border-1 border-color px-2 py-1 rounded-md'>
-        <DropDownListComponent id='field' name={`${name}`} fields={{ text: 'field', value: 'id' }} style={{ border: 'none' }} value={value} dataSource={list} popupHeight='220px' popupWidth='120px' onChange={handleSelectChange} />
+        <DropDownListComponent
+          id='field'
+          name={`${name}`}
+          fields={{ text: 'field', value: 'id' }}
+          style={{ border: 'none' }}
+          value={value}
+          dataSource={list}
+          popupHeight='220px'
+          popupWidth='120px'
+          onChange={handleSelectChange}
+        />
       </div>
     )
   }
@@ -110,11 +133,19 @@ export const Question = () => {
   const handlePageChange = ({ selected }) => {
     setCurrentPage(selected)
   }
-  const displayItems = filteredQuestions.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+  const displayItems = filteredQuestions.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
+  )
 
   if (allQuestions.length === 0) {
     return (
-      <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
+      <Box
+        fontFamily={'Montserrat'}
+        fontWeight={400}
+        backgroundColor={'#e9f3f5'}
+        p={30}
+        overflow='hidden'>
         <VStack spacing={10}>
           <Skeleton w={'70%'}>
             <div>contents wrapped</div>
@@ -142,9 +173,17 @@ export const Question = () => {
   } else
     return (
       <>
-        <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
-          <Header category='App' title='Question' />
-          <IconButton color='#03C9D7' backgroundColor='#f7f7f7' aria-label='Search database' icon={<AddIcon />} onClick={() => navigate('/question/add')} />
+        <div
+          style={{ fontFamily: 'Montserrat' }}
+          className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
+          <Header title='Question' />
+          <IconButton
+            color='#03C9D7'
+            backgroundColor='#f7f7f7'
+            aria-label='Search database'
+            icon={<AddIcon />}
+            onClick={() => navigate('/question/add')}
+          />
 
           <div className='flex flex-col md:flex-row justify-between items-center gap-4'>
             <div className='flex items-center gap-2'>
@@ -238,7 +277,13 @@ export const Question = () => {
                       return `${positions.find((s) => s.id === id).positionName}, `
                     })}
                   </Text>
-                  <IconButton color='#e06cae' backgroundColor='#f7f7f7' aria-label='Search database' icon={<EditIcon />} onClick={() => navigate(`/question/edit/${item.id}`)} />
+                  <IconButton
+                    color='#e06cae'
+                    backgroundColor='#f7f7f7'
+                    aria-label='Search database'
+                    icon={<EditIcon />}
+                    onClick={() => navigate(`/question/edit/${item.id}`)}
+                  />
                 </Box>
               </ListItem>
             ))}

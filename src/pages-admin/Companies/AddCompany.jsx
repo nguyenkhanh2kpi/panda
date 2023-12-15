@@ -36,11 +36,11 @@ export const AddCompany = () => {
   return (
     <>
       <ToastContainer position='bottom-right' autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme='light' />
-      <Button ml={"8%"} color='white' backgroundColor='rgb(3, 201, 215)' onClick={onOpen}>
+      <Button fontFamily={'Montserrat'} fontWeight={400} ml={"8%"} color='white' backgroundColor='rgb(3, 201, 215)' onClick={onOpen}>
         + Thêm thành viên
       </Button>
 
-      <AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
+      <AlertDialog fontFamily={'Montserrat'} fontWeight={400} isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize='lg' fontWeight='bold'>

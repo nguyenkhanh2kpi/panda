@@ -49,6 +49,7 @@ import { MyCompany } from "../pages-admin/MyCompany/MyCompany";
 import { ManageInterviewer } from "../pages-admin/ManageInterviewer/ManageInterviewer";
 import { ListJob } from "../pages-admin/Job-recruiter/ListJob";
 import { Companies } from "../pages-admin/Companies/Companies";
+import { InterviewResult } from "../pages-admin/ResultInterview/InterviewResult";
 
 const AllRoutesAd = () => {
     return (
@@ -117,9 +118,9 @@ const AllRoutesAd = () => {
         <Route path="/my-company" element={<MyCompany/>} />
         <Route path="/manage-interviewer" element={<ManageInterviewer/>} />
 
-        
 
 
+        <Route path="/result" element={<InterviewResult/>} />
       </Routes>
     );
   };

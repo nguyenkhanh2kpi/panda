@@ -1,4 +1,20 @@
-import { Avatar, AvatarGroup, Box, Button, HStack, Image, Link, SimpleGrid, Skeleton, Stack, Tag, Text, VStack, Wrap, WrapItem } from '@chakra-ui/react'
+import {
+  Avatar,
+  AvatarGroup,
+  Box,
+  Button,
+  HStack,
+  Image,
+  Link,
+  SimpleGrid,
+  Skeleton,
+  Stack,
+  Tag,
+  Text,
+  VStack,
+  Wrap,
+  WrapItem,
+} from '@chakra-ui/react'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -27,8 +43,12 @@ export default function InterviewerListRoom() {
 
   const convertDateTime = (dateString) => {
     const dateObj = new Date(dateString)
-    const formattedTime = `${String(dateObj.getHours()).padStart(2, '0')}h${String(dateObj.getMinutes()).padStart(2, '0')}`
-    const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(dateObj.getMonth() + 1).padStart(2, '0')}/${dateObj.getFullYear()}`
+    const formattedTime = `${String(dateObj.getHours()).padStart(2, '0')}h${String(
+      dateObj.getMinutes()
+    ).padStart(2, '0')}`
+    const formattedDate = `${String(dateObj.getDate()).padStart(2, '0')}/${String(
+      dateObj.getMonth() + 1
+    ).padStart(2, '0')}/${dateObj.getFullYear()}`
     return formattedDate
   }
 
@@ -75,14 +95,30 @@ export default function InterviewerListRoom() {
   } else
     return (
       <>
-        <Box backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
+        <Box
+          fontFamily={'Montserrat'}
+          fontWeight={400}
+          backgroundColor={'#e9f3f5'}
+          p={30}
+          overflow='hidden'>
           <VStack spacing={10}>
             <HStack w={'100%'} spacing={10}>
-              <Box overflow={"hidden"} p={5} borderRadius='lg' backgroundColor={'#FFFFFF'} w={'33%'} h={'190px'}>
+              <Box
+                overflow={'hidden'}
+                p={5}
+                borderRadius='lg'
+                backgroundColor={'#FFFFFF'}
+                w={'33%'}
+                h={'190px'}>
                 <Text fontFamily={''} fontWeight={'black'}>
                   10 Buổi phỏng vấn
                 </Text>
-                <Pie id='pie-chart' data={ecomPieChartData} legendVisiblity={false} height='160px' />
+                <Pie
+                  id='pie-chart'
+                  data={ecomPieChartData}
+                  legendVisiblity={false}
+                  height='160px'
+                />
               </Box>
               <Box p={5} borderRadius='lg' backgroundColor={'#FFFFFF'} w={'33%'} h={'190px'}>
                 <Text fontWeight={'black'}>30 ứng viên</Text>
@@ -94,7 +130,11 @@ export default function InterviewerListRoom() {
                   {listRooms.map((room) => (
                     <div key={room.id}>
                       {room.listCandidate.map((candidate) => (
-                        <Avatar key={candidate.itemId} name={candidate.name ? candidate.name : candidate.email} src={candidate.avatar} />
+                        <Avatar
+                          key={candidate.itemId}
+                          name={candidate.name ? candidate.name : candidate.email}
+                          src={candidate.avatar}
+                        />
                       ))}
                     </div>
                   ))}
@@ -109,14 +149,29 @@ export default function InterviewerListRoom() {
               Các buổi phỏng vấn
             </Text>
 
-            <Box borderRadius='lg' backgroundColor={'#e9f3f5'} w={'100%'} h={'500px'} overflow={'auto'}>
+            <Box
+              borderRadius='lg'
+              backgroundColor={'#e9f3f5'}
+              w={'100%'}
+              h={'500px'}
+              overflow={'auto'}>
               <SimpleGrid columns={3} spacing={10}>
                 {/* box */}
                 {listRooms.map((room) => (
-                  <Box p={4} overflow={'hidden'} borderRadius={10} backgroundColor={'#ffffff'} height='250px'>
+                  <Box
+                    p={4}
+                    overflow={'hidden'}
+                    borderRadius={10}
+                    backgroundColor={'#ffffff'}
+                    height='250px'>
                     <HStack justifyContent={'space-between'}>
                       <HStack>
-                        <Image boxSize='100px' borderRadius={10} src='https://www.peninsulapersonnel.com.au/wp-content/uploads/2020/09/Best-HR-Interview-1.png' alt='Dan Abramov' />
+                        <Image
+                          boxSize='100px'
+                          borderRadius={10}
+                          src='https://www.peninsulapersonnel.com.au/wp-content/uploads/2020/09/Best-HR-Interview-1.png'
+                          alt='Dan Abramov'
+                        />
                         <VStack>
                           <Text w={'100%'} fontWeight={'black'} m={2}>
                             {room.roomName}

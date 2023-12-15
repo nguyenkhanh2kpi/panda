@@ -1,6 +1,20 @@
 import React from 'react'
 import { Header } from '../../Components-admin'
-import { ScheduleComponent, ViewsDirective, ViewDirective, Day, Week, WorkWeek, Month, Agenda, Inject, Resize, DragAndDrop, ResourcesDirective, ResourceDirective } from '@syncfusion/ej2-react-schedule'
+import {
+  ScheduleComponent,
+  ViewsDirective,
+  ViewDirective,
+  Day,
+  Week,
+  WorkWeek,
+  Month,
+  Agenda,
+  Inject,
+  Resize,
+  DragAndDrop,
+  ResourcesDirective,
+  ResourceDirective,
+} from '@syncfusion/ej2-react-schedule'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { calendarService } from '../../Service/calendar.service'
@@ -53,11 +67,26 @@ export const AdminCalendar = () => {
   } else
     return (
       <>
-        <div className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
-          <Header category='pages' title='Calendar' />
-          <ScheduleComponent height='650px' ref={(schedule) => setScheduleObj(schedule)} eventSettings={{ dataSource: displayCalendar }} selectedDate={new Date()} dragStart={onDragStart}>
+        <div
+          style={{ fontFamily: 'Montserrat', fontWeight: '400px' }}
+          className='m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl'>
+          <Header title='Calendar' />
+          <ScheduleComponent
+            height='650px'
+            ref={(schedule) => setScheduleObj(schedule)}
+            eventSettings={{ dataSource: displayCalendar }}
+            selectedDate={new Date()}
+            dragStart={onDragStart}>
             <ResourcesDirective>
-              <ResourceDirective field='ResourceId' title='Resource' name='Resources' allowMultiple={true} dataSource={calendarConver.generateResourceData()} textField='Text' idField='Id' colorField='Color'></ResourceDirective>
+              <ResourceDirective
+                field='ResourceId'
+                title='Resource'
+                name='Resources'
+                allowMultiple={true}
+                dataSource={calendarConver.generateResourceData()}
+                textField='Text'
+                idField='Id'
+                colorField='Color'></ResourceDirective>
             </ResourcesDirective>
             <ViewsDirective>
               {['Month', 'Agenda'].map((item) => (

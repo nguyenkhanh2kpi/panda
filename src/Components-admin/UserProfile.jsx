@@ -2,7 +2,7 @@ import React from "react";
 import { MdOutlineCancel } from "react-icons/md";
 import { Button } from ".";
 import { useStateContext } from "../contexts/ContextProvider";
-import { Avatar, AvatarBadge, AvatarGroup, WrapItem } from "@chakra-ui/react";
+import { Avatar, AvatarBadge, AvatarGroup, Box, WrapItem } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -14,7 +14,7 @@ const UserProfile = () => {
 
 
     return (
-        <div className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
+        <Box fontFamily={'Montserrat'} fontWeight={400} className="nav-item absolute right-1 top-16 bg-white dark:bg-[#42464D] p-8 rounded-lg w-96">
             <div className="flex justify-between items-center">
                 <p className="font-semibold text-lg dark:text-gray-200">
                     User Profile
@@ -67,7 +67,7 @@ const UserProfile = () => {
                     <Link to="/AdLogout">Logout</Link>
                 </button>
             </div>
-        </div>
+        </Box>
     );
 };
 

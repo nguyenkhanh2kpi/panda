@@ -56,8 +56,8 @@ const RoomList = () => {
   const roomdatas = roomList.map((job) => {
     return (
       <Link to={`/addCandidate/${job.jobPostId}/${job.id}`}>
-        <HStack mb='30px' mt='50px' w={'100%'} backgroundColor={'#FFFFFF'} borderRadius='lg'>
-          <Box h='100%' key={job.id} w='100%' boxShadow='rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px' p='20px 20px 0 20px'>
+        <HStack fontFamily={'Montserrat'} fontWeight={400} mb='30px' mt='20px' w={'100%'} backgroundColor={'#FFFFFF'} borderRadius='lg'>
+          <Box borderRadius={20} h='100%' key={job.id} w='100%' boxShadow='rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px' p='20px 20px 0 20px'>
             <Box pt='10px' fontWeight='semibold' as='h4' lineHeight='tight' noOfLines={1} pb='10px' fontSize='20px' borderRadius='lg' pl='10px' mb='10px'>
               Tên phòng : {job.roomName}
             </Box>
@@ -91,14 +91,12 @@ const RoomList = () => {
 
   return (
     <>
-      <Box p='20px' backgroundColor='#e9f3f5'>
-        <Button ml='9%' style={{ backgroundColor: '#03C9D7' }} /*onClick={submitHandler}*/>
-          {' '}
-          <Link to={`/roomAdd`}>Thêm phòng họp</Link>
-        </Button>
-      </Box>
-      <Box backgroundColor='#e9f3f5' pl='10%' pt='20px' fontWeight='bold' fontSize='20px'>
-        {roomdatas.length} phòng họp
+      <Box fontFamily={'Montserrat'} fontWeight={400} p='20px' backgroundColor='#e9f3f5'>
+        <HStack>
+          <Button mt={10} ml={'9%'} color='white' backgroundColor='rgb(3, 201, 215)'>
+            <Link to={`/roomAdd`}> + Thêm phòng họp</Link>
+          </Button>
+        </HStack>
       </Box>
       <Box display='flex' justifyContent='space-between' backgroundColor='#e9f3f5'>
         <Box justifyContent='space-between' ml='10%' width='90%' mr={'10%'}>

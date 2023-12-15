@@ -1,4 +1,4 @@
-import { Box, Button, Image, Text, Badge, Select } from '@chakra-ui/react'
+import { Box, Button, Image, Text, Badge, Select, Input, Textarea } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
@@ -39,9 +39,11 @@ function JobDetailRecruiter() {
   const [language, setLanguage] = useState(data.language)
 
   let img = []
+  console.log(testImage)
   const onOpen = async (e) => {
-    if (testImage !== null) {
+    if (testImage != null && !window.testImage) {
       const formData = new FormData()
+      console.log('vao dc r', testImage)
       formData.append('file', testImage)
 
       const imageResponse = await axios.post(`${hostName}/file/upload`, formData, {
@@ -51,9 +53,11 @@ function JobDetailRecruiter() {
       })
 
       img.push(imageResponse.data.data)
+    } else {
+      console.log('img bi null r ')
     }
-
-    let data = JSON.stringify({
+    console.log('img', img.at(0))
+    let data1 = JSON.stringify({
       name: name,
       position: position,
       language: language,
@@ -67,7 +71,7 @@ function JobDetailRecruiter() {
       detailJob: detailJob,
       requirements: requirements,
       interest: interest,
-      image: img.at(0),
+      image: img.length != 0 ? img.at(0) : data.image,
       status: status,
     })
 
@@ -79,7 +83,7 @@ function JobDetailRecruiter() {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
-      data: data,
+      data: data1,
     }
 
     console.log(config)
@@ -105,10 +109,16 @@ function JobDetailRecruiter() {
   }
   if (data != null)
     return (
-      <Box>
+      <Box fontFamily={'Montserrat'} fontWeight={400}>
         <Box display='flex' justifyContent='space-evenly'>
           <Box w='950px'>
-            <Box mt='30px' p='20px' pr='0' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em' color='RGBA(0, 0, 0, 0.76)'>
+            <Box
+              borderRadius={20}
+              mt='30px'
+              p='20px'
+              pr='0'
+              boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'
+              color='RGBA(0, 0, 0, 0.76)'>
               <Text fontSize='30px' ml='15%' fontWeight='bold'>
                 Thông tin chỉ tiết công việc
               </Text>
@@ -117,106 +127,350 @@ function JobDetailRecruiter() {
               </Text>
 
               <Box mt='30px' ml='15%'>
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
                   Tên công việc
                 </Badge>
 
                 <div className='form_input'>
                   <div className='two'>
-                    <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={name} onChange={(e) => setName(e.target.value)} type='text' name='detailJob' id='detailJob' />
+                    <Input
+                      p={5}
+                      w={'80%'}
+                      borderRadius={10}
+                      fontSize={20}
+                      backgroundColor={'#ffffff'}
+                      value={name != null ? name : data.name}
+                      onChange={(e) => setName(e.target.value)}
+                      type='text'
+                      name='detailJob'
+                      id='detailJob'
+                    />
                   </div>
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
                   Hình ảnh
                 </Badge>
                 <Image style={{ padding: '5px', width: '200px' }} src={`${data.image}`} />
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
                   Chọn hình ảnh
                 </Badge>
 
                 <div className='two'>
-                  <input style={{ padding: '5px', borderRadius: '20px', marginRight: '20px', marginTop: '10px', marginBottom: '10px' }} type='file' onChange={(e) => setTestImage(e.target.files[0])} name='avatar' id='avatar' />
+                  <input
+                    style={{
+                      padding: '5px',
+                      borderRadius: '20px',
+                      marginRight: '20px',
+                      marginTop: '10px',
+                      marginBottom: '10px',
+                    }}
+                    type='file'
+                    onChange={(e) => setTestImage(e.target.files[0])}
+                    name='avatar'
+                    id='avatar'
+                  />
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
                   Địa điểm
                 </Badge>
-                <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={location} onChange={(e) => setLocation(e.target.value)} type='text' name='location' id='location' />
-                </div>
+                {/* <div className='two'>
+                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={location != null ? location : data.location} onChange={(e) => setLocation(e.target.value)} type='text' name='location' id='location' />
+                </div> */}
+                <Select
+                  onChange={(e) => setLocation(e.target.value)}
+                  value={location != null ? location : data.location}
+                  color='black'
+                  fontSize={20}
+                  backgroundColor={'#ffffff'}
+                  w={'80%'}
+                  fontFamily={'Montserrat'}
+                  name='location'>
+                  <option value='all'>Địa điểm</option>
+                  <option value='Hồ Chí Minh'>Hồ Chí Minh</option>
+                  <option value='Đà Nẵng'>Đà Nẵng</option>
+                  <option value='Hà Nội'>Hà Nội</option>
+                </Select>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
-                  {' '}
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
                   Vị trí
                 </Badge>
-
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={position} onChange={(e) => setPosition(e.target.value)} type='text' name='position' id='position' />
+                  <Input
+                    p={5}
+                    w={'80%'}
+                    borderRadius={10}
+                    fontSize={20}
+                    backgroundColor={'#ffffff'}
+                    value={position != null ? position : data.position}
+                    onChange={(e) => setPosition(e.target.value)}
+                    type='text'
+                    name='position'
+                    id='position'
+                  />
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
-                  {' '}
-                  Số lượng{' '}
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
+                  Số lượng
                 </Badge>
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={number} onChange={(e) => setNumber(e.target.value)} type='text' name='number' id='number' />
+                  <Input
+                    p={5}
+                    w={'80%'}
+                    borderRadius={10}
+                    fontSize={20}
+                    backgroundColor={'#ffffff'}
+                    value={number != null ? number : data.number}
+                    onChange={(e) => setNumber(e.target.value)}
+                    type='text'
+                    name='number'
+                    id='number'
+                  />
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
-                  {' '}
-                  Giới tính{' '}
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
+                  Giới tính
                 </Badge>
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={sex} onChange={(e) => setSex(e.target.value)} type='text' name='sex' id='sex' />
+                  {/* <input
+                    style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }}
+                    value={sex != null ? sex : data.sex}
+                    onChange={(e) => setSex(e.target.value)}
+                    type='text'
+                    name='sex'
+                    id='sex'
+                  /> */}
+                  <Select
+                    w={'80%'}
+                    color='black'
+                    fontSize={'20px'}
+                    backgroundColor={'#ffffff'}
+                    value={sex != null ? sex : data.sex}
+                    onChange={(e) => setSex(e.target.value)}
+                    name='sex'
+                    id='sex'>
+                    <option value='MALE'>Nam</option>
+                    <option value='FEMALE'>Nữ</option>
+                    <option value='Không yêu cầu'>Không yêu cầu</option>
+                  </Select>
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
-                  {' '}
-                  Kỹ năng{' '}
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
+                  Kỹ năng
                 </Badge>
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={requirements} onChange={(e) => setRequirements(e.target.value)} type='text' name='requirements' id='requirements' />
+                  <Textarea
+                    h={200}
+                    p={5}
+                    w={'80%'}
+                    borderRadius={10}
+                    fontSize={20}
+                    value={requirements != null ? requirements : data.requirements}
+                    onChange={(e) => setRequirements(e.target.value)}
+                    backgroundColor={'#ffffff'}
+                    name='requirements'
+                    id='requirements'
+                    multiple={true}
+                  />
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
-                  {' '}
-                  Địa chỉ doanh nghiệp{' '}
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
+                  Địa chỉ doanh nghiệp
                 </Badge>
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={detailLocation} onChange={(e) => setDetailLocation(e.target.value)} type='text' name='detailLocation' id='detailLocation' />
+                  <Textarea
+                    p={5}
+                    w={'80%'}
+                    borderRadius={10}
+                    fontSize={20}
+                    backgroundColor={'#ffffff'}
+                    value={detailLocation != null ? detailLocation : data.detailLocation}
+                    onChange={(e) => setDetailLocation(e.target.value)}
+                    type='text'
+                    name='detailLocation'
+                    id='detailLocation'
+                  />
                 </div>
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
                   Hình thưc công việc{' '}
                 </Badge>
 
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={workingForm} onChange={(e) => setWorkingForm(e.target.value)} type='text' name='workingForm' id='workingForm' />
+                  <Input
+                    p={5}
+                    w={'80%'}
+                    borderRadius={10}
+                    fontSize={20}
+                    backgroundColor={'#ffffff'}
+                    value={workingForm != null ? workingForm : data.workingForm}
+                    onChange={(e) => setWorkingForm(e.target.value)}
+                    type='text'
+                    name='workingForm'
+                    id='workingForm'
+                  />
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
                   Chi tiết công việc
                 </Badge>
 
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={detailJob} onChange={(e) => setDetailJob(e.target.value)} type='text' name='detailJob' id='detailJob' />
+                  <Textarea
+                    h={200}
+                    p={5}
+                    w={'80%'}
+                    borderRadius={10}
+                    fontSize={20}
+                    backgroundColor={'#ffffff'}
+                    value={detailJob != null ? detailJob : data.detailJob}
+                    onChange={(e) => setDetailJob(e.target.value)}
+                    type='text'
+                    name='detailJob'
+                    id='detailJob'
+                  />
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
-                  Kinh nghiệm{' '}
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
+                  Kinh nghiệm
                 </Badge>
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={experience} onChange={(e) => setExperience(e.target.value)} type='text' name='experience' id='experience' />
+                  <Select
+                    backgroundColor={'#ffffff'}
+                    w={'80%'}
+                    borderRadius={10}
+                    fontSize={20}
+                    value={experience != null ? experience : data.experience}
+                    onChange={(e) => setExperience(e.target.value)}
+                    type='text'
+                    name='experience'
+                    id='experience'>
+                    <option value='all'>Kinh nghiệm</option>
+                    <option value='chưa có'>chưa có</option>
+                    <option value='dưới 1 năm'>dưới 1 năm</option>
+                    <option value='1 năm'>1 năm</option>
+                    <option value='2 năm'>2 năm</option>
+                    <option value='3 năm'>3 năm</option>
+                    <option value='4 năm'>4 năm</option>
+                    <option value='5 năm'>5 năm</option>
+                    <option value='trên 5 năm'>trên 5 năm</option>
+                  </Select>
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
-                  {' '}
-                  Mức lương{' '}
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
+                  Mức lương
                 </Badge>
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={salary} onChange={(e) => setSalary(e.target.value)} type='text' name='salary' id='salary' />
-                  <Select mt={6} onChange={(e) => setSalary(e.target.value)} border={'none'} defaultValue='all' value={salary} type='text' name='salary' id='salary'>
+                  {/* <input
+                    style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }}
+                    value={salary != null ? salary : data.salary}
+                    onChange={(e) => setSalary(e.target.value)}
+                    type='text'
+                    name='salary'
+                    id='salary'
+                  /> */}
+                  <Select
+                    w={'80%'}
+                    color='black'
+                    fontSize={'20px'}
+                    backgroundColor={'#ffffff'}
+                    onChange={(e) => setSalary(e.target.value)}
+                    value={salary}
+                    type='text'
+                    name='salary'
+                    id='salary'>
                     <option value='all'>Mức lương</option>
                     <option value='Dưới 10 triệu'>Dưới 10 triệu</option>
                     <option value='10 -15 triệu'>10 -15 triệu</option>
@@ -229,17 +483,42 @@ function JobDetailRecruiter() {
                   </Select>
                 </div>
 
-                <Badge borderRadius='full' fontSize='14px' px='2' colorScheme='teal' ml='2px' mt='20px' mb='10px'>
-                  {' '}
-                  Lợi ích{' '}
+                <Badge
+                  borderRadius='full'
+                  fontSize='14px'
+                  px='2'
+                  colorScheme='teal'
+                  ml='2px'
+                  mt='20px'
+                  mb='10px'>
+                  Lợi ích
                 </Badge>
 
                 <div className='two'>
-                  <input style={{ padding: '5px', width: '80%', borderRadius: '10px', fontSize: '20px' }} value={interest} onChange={(e) => setInterest(e.target.value)} type='text' name='interest' id='interest' />
+                  <Textarea
+                    h={200}
+                    p={5}
+                    w={'80%'}
+                    borderRadius={10}
+                    fontSize={20}
+                    backgroundColor={'#ffffff'}
+                    value={interest != null ? interest : data.interest}
+                    onChange={(e) => setInterest(e.target.value)}
+                    type='text'
+                    name='interest'
+                    id='interest'
+                  />
                 </div>
 
-                <Button width='80%' bg='blue.400' mt='30px' onClick={onOpen}>
-                  Đăng bài
+                <Button
+                  w={200}
+                  borderRadius={10}
+                  mt={10}
+                  mb={10}
+                  color='white'
+                  backgroundColor='rgb(3, 201, 215)'
+                  onClick={onOpen}>
+                  Cập nhật
                 </Button>
               </Box>
             </Box>
@@ -249,5 +528,4 @@ function JobDetailRecruiter() {
       </Box>
     )
 }
-
 export default JobDetailRecruiter

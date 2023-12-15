@@ -57,34 +57,28 @@ const AllJob = () => {
   const userId = JSON.parse(localStorage.getItem('data')).data.userInfo.id
   const jobData = useSelector((store) => store.job.data)
   const jobdatas = jobData.map((job) => {
-    return (job.status === true && job.user_id===userId)  ? (
-      <Box key={job.id} mt='50px' boxShadow='rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px' mb='30px' p='20px'>
+    return job.status === true && job.user_id === userId ? (
+      <Box borderRadius={20} key={job.id} mt='50px' boxShadow='rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px' mb='30px' p='20px'>
         <Link to={`/jobDetail_Recruiter/${job.id}`}>
           <Text fontSize='20px'>{job.name}</Text>
           <Image style={{ width: '200px' }} src={`${job.image}`} />
-          <Flex>
+          <Flex mt={10}>
             <Box display='flex' mr='20px'>
-              <BsBag />
-              <h1> {job.experience}</h1>
+              <Button>Kinh nghiệm: {job.experience}</Button>
             </Box>
             <Box mr='20px' color='blue.400'>
-              {' '}
-              ₹ Not closed
+              {job.status ? <Button>Active</Button> : <Button>Delete</Button>}
             </Box>
-            <Box display='flex' mr='20px'>
-              <Box mt='2px' color='blue'>
-                {' '}
-                <CiLocationOn />
-              </Box>
+            <Box mr='20px' color='blue.400'>
+              <Button>Số lượng tuyển: {job.number}</Button>
+            </Box>
 
-              <h2> {job.exeprience} years</h2>
-            </Box>
+            <Button data-value={job.id} onClick={submitHandler}>
+              delete
+            </Button>
           </Flex>
-          <Text> Skill : {job.requirements}</Text>
         </Link>
-        <Button data-value={job.id} onClick={submitHandler}>
-          delete
-        </Button>
+
         <ToastContainer />
       </Box>
     ) : (
@@ -95,10 +89,12 @@ const AllJob = () => {
   return (
     <>
       <h1></h1>
-      <Box ml='10' mt='20px' fontWeight='bold' width='60%' fontSize='20px' mb='-35px'>
-        {jobData.length} Jobs Based on your interest
+      <Box fontFamily={'Montserrat'} fontWeight={400} ml='10' mt='20px' width='60%' fontSize='20px' mb='-35px'>
+        <Button borderRadius={10} mt={10} color='white' backgroundColor='rgb(3, 201, 215)'>
+          <Link to={`/job-posting`}> + Đăng tuyển dụng</Link>
+        </Button>
       </Box>
-      <Box display='flex' justifyContent='space-between'>
+      <Box fontFamily={'Montserrat'} fontWeight={400} display='flex' justifyContent='space-between'>
         <Box ml='10' width='60%'>
           {jobdatas}
         </Box>
@@ -108,3 +104,4 @@ const AllJob = () => {
 }
 
 export default AllJob
+

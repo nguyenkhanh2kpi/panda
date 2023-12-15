@@ -2,7 +2,19 @@ import React, { useId, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios'
-import { Box, Flex, Text, Image, Badge, Select, HStack, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Text,
+  Image,
+  Badge,
+  Select,
+  HStack,
+  VStack,
+  Button,
+  Textarea,
+  Input,
+} from '@chakra-ui/react'
 import Form from 'react-bootstrap/Form'
 import { useNavigate } from 'react-router-dom'
 import './style4.css'
@@ -183,47 +195,7 @@ const JobPosting = () => {
   return (
     <>
       <VStack>
-        <Box w={'20%'}>
-          <button className='btn4' style={{ marginLeft: '5px', backgroundColor: '#03c9d7' }}>
-            <Link to={`/allJob_Recruiter`}>Xem công việc đã đăng</Link>
-          </button>
-          {/* <div>
-            <h2
-              style={{
-                color: '#000000',
-                fontSize: '20px',
-                marginLeft: '15px',
-                marginRight: '25px',
-                padding: '10px',
-                borderRadius: '10px',
-              }}>
-              Công việc gần đây
-            </h2>
-            <Box width='100%'>
-              {jobList.map((i) => {
-                return i.status === true && i.user_id === userId ? (
-                  <Box key={uuid()}>
-                    <Link to={`/jobDetail_Recruiter/${i.id}`}>
-                      <Box key={i.id} mt='50px' ml='10px' p='20px' borderRadius='5%' boxShadow='teal 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px' mb='30px'>
-                        <Badge borderRadius='full' fontSize='13px' p='4' colorScheme='teal' mb='20px'>
-                          {i.name}
-                        </Badge>
-                        <Image boxShadow='teal 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px' src={i.image} />
-                      </Box>
-                    </Link>
-                  </Box>
-                ) : (
-                  <div></div>
-                )
-              })}
-
-
-            </Box>
-        </div> */}
-        </Box>
-
-        {/* right */}
-        <Box w='70%'>
+        <Box fontFamily={'Montserrat'} fontWeight={400} w='70%'>
           <div className='form_data6'>
             <div className='form_heading'>
               <h2
@@ -238,32 +210,59 @@ const JobPosting = () => {
             </div>
 
             <form>
-              <div className='form_input'>
+              <div>
                 <label htmlFor='name'>
                   <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
                     Tên công việc
                   </Badge>
                 </label>
-                <input style={{ width: '100%' }} type='text' onChange={(e) => setName(e.target.value)} name='name' id='Name' />
+                <Input
+                  mt={3}
+                  mb={5}
+                  w={'100%'}
+                  backgroundColor={'#ffffff'}
+                  fontSize={20}
+                  type='text'
+                  onChange={(e) => setName(e.target.value)}
+                  name='name'
+                  id='Name'
+                />
               </div>
 
-              <div className='form_input'>
+              <div>
                 <label htmlFor='name'>
                   <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
                     Địa chỉ làm việc
                   </Badge>
                 </label>
 
-                <input style={{ width: '100%' }} type='position' onChange={(e) => setDetailLocation(e.target.value)} name='position' id='position' />
+                <Input
+                  mt={3}
+                  mb={5}
+                  w={'100%'}
+                  backgroundColor={'#ffffff'}
+                  fontSize={20}
+                  type='position'
+                  onChange={(e) => setDetailLocation(e.target.value)}
+                  name='position'
+                  id='position'
+                />
               </div>
               <div class='flex-container'>
                 <div className='form_input flex' style={{ heigth: '20% !important' }}>
-                  <div htmlFor='name' style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
+                  <div
+                    htmlFor='name'
+                    style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
                     <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
                       Mức lương
                     </Badge>
                   </div>
-                  <Select mt={6} onChange={(e) => setSalary(e.target.value)} border={'none'} defaultValue='all'>
+                  <Select
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
+                    mt={6}
+                    onChange={(e) => setSalary(e.target.value)}
+                    defaultValue='all'>
                     <option value='all'>Mức lương</option>
                     <option value='Dưới 10 triệu'>Dưới 10 triệu</option>
                     <option value='10 -15 triệu'>10 -15 triệu</option>
@@ -275,86 +274,139 @@ const JobPosting = () => {
                     <option value='thỏa thuận'>thỏa thuận</option>
                   </Select>
                 </div>
-                <div className='form_input flex' style={{ marginLeft: '10px' }}>
-                  <div htmlFor='name' style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
-                    <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
-                      Hình thức làm việc
-                    </Badge>
-                  </div>
-                  <input onChange={(e) => setWorkingForm(e.target.value)} type='text' name='workingForm' id='workingForm' />
-                </div>
+                <Box mt={4} className='flex' style={{ marginLeft: '10px' }}>
+                  <HStack>
+                    <Box htmlFor='name' style={{ display: 'block', paddingRight: '2%' }}>
+                      <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
+                        Hình thức làm việc
+                      </Badge>
+                    </Box>
+                    <Input
+                      w={'100%'}
+                      backgroundColor={'#ffffff'}
+                      fontSize={20}
+                      onChange={(e) => setWorkingForm(e.target.value)}
+                      type='text'
+                      name='workingForm'
+                      id='workingForm'
+                    />
+                  </HStack>
+                </Box>
               </div>
 
               <div class='flex-container'>
                 <div className='form_input flex'>
-                  <div htmlFor='name' style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
+                  <div
+                    htmlFor='name'
+                    style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
                     <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
                       Địa điểm
                     </Badge>
                   </div>
-                  <Select mt={6} defaultValue='all' onChange={(e) => setLocation(e.target.value)}>
+                  <Select
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
+                    mt={6}
+                    defaultValue='all'
+                    onChange={(e) => setLocation(e.target.value)}>
                     <option value='all'>Địa điểm</option>
                     <option value='Hồ Chí Minh'>Hồ Chí Minh</option>
                     <option value='Đà Nẵng'>Đà Nẵng</option>
                     <option value='Hà Nội'>Hà Nội</option>
                   </Select>
                 </div>
-                <div className='form_input flex' style={{ marginLeft: '10px' }}>
-                  <div htmlFor='name' style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
+                <Box mt={6} className='flex' style={{ marginLeft: '10px' }}>
+                  <div htmlFor='name' style={{ display: 'block', paddingRight: '2%' }}>
                     <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
                       Ngôn ngữ
                     </Badge>
                   </div>
-                  <input onChange={(e) => setLanguage(e.target.value)} type='text' name='language' id='language' />
-                </div>
+                  <Input
+                    w={'100%'}
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
+                    onChange={(e) => setLanguage(e.target.value)}
+                    type='text'
+                    name='language'
+                    id='language'
+                  />
+                </Box>
               </div>
 
               <div class='flex-container'>
                 <div className='form_input flex'>
-                  <div htmlFor='name' style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
+                  <div
+                    htmlFor='name'
+                    style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
                     <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
                       Giới tính
                     </Badge>
                   </div>
-                  <Select mt={6} onChange={(e) => setSex(e.target.value)} defaultValue='NONE'>
+                  <Select
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
+                    mt={6}
+                    onChange={(e) => setSex(e.target.value)}
+                    defaultValue='NONE'>
                     <option value='MALE'>Nam</option>
                     <option value='FEMALE'>Nữ</option>
                     <option value='NONE'>Không yêu cầu</option>
                   </Select>
                 </div>
-                <div className='form_input flex' style={{ marginLeft: '10px' }}>
-                  <div htmlFor='name' style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
+                <Box className='flex' style={{ marginLeft: '10px' }}>
+                  <div
+                    htmlFor='name'
+                    style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
                     <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
                       Số lượng
                     </Badge>
                   </div>
-                  <input
-                    // value={password}
+                  <Input
+                    mt={6}
+                    w={'100%'}
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
                     onChange={(e) => setNumber(e.target.value)}
                     type='text'
                     name='number'
                     id='number'
                   />
-                </div>
+                </Box>
               </div>
 
               <div class='flex-container'>
-                <div className='form_input flex'>
-                  <div htmlFor='name' style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
+                <Box className='flex'>
+                  <div
+                    htmlFor='name'
+                    style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
                     <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
                       Vị trí tuyển dụng
                     </Badge>
                   </div>
-                  <input onChange={(e) => setPosition(e.target.value)} type='text' name='detailLocation' id='detailLocation' />
-                </div>
+                  <Input
+                    mt={6}
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
+                    onChange={(e) => setPosition(e.target.value)}
+                    type='text'
+                    name='detailLocation'
+                    id='detailLocation'
+                  />
+                </Box>
                 <div className='form_input flex' style={{ marginLeft: '10px' }}>
-                  <div htmlFor='name' style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
+                  <div
+                    htmlFor='name'
+                    style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
                     <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
-                      {' '}
                       Kinh nghiệm
                     </Badge>
                   </div>
-                  <Select onChange={(e) => setExperience(e.target.value)} mt={6} border={'none'} defaultValue={'Chưa có'}>
+                  <Select
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
+                    onChange={(e) => setExperience(e.target.value)}
+                    mt={6}
+                    defaultValue={'Chưa có'}>
                     <option value='all'>Kinh nghiệm</option>
                     <option value='chưa có'>chưa có</option>
                     <option value='dưới 1 năm'>dưới 1 năm</option>
@@ -369,16 +421,25 @@ const JobPosting = () => {
               </div>
 
               <div className='form_input'>
-                <div htmlFor='name' style={{ display: 'block', paddingTop: '5%', paddingRight: '2%', paddingBottom: '2%' }}>
+                <div
+                  htmlFor='name'
+                  style={{
+                    display: 'block',
+                    paddingTop: '5%',
+                    paddingRight: '2%',
+                    paddingBottom: '2%',
+                  }}>
                   <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
                     Mô tả công việc
                   </Badge>
                 </div>
 
                 <div className='two'>
-                  <textarea
-                    style={{ width: '100%' }}
-                    // value={confirmpassword}
+                  <Textarea
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
+                    w={'100%'}
+                    h={200}
                     onChange={(e) => setDetailJob(e.target.value)}
                     type='text'
                     name='detailJob'
@@ -388,15 +449,24 @@ const JobPosting = () => {
               </div>
 
               <div className='form_input'>
-                <div htmlFor='name' style={{ display: 'block', paddingTop: '2%', paddingRight: '2%', paddingBottom: '2%' }}>
+                <div
+                  htmlFor='name'
+                  style={{
+                    display: 'block',
+                    paddingTop: '2%',
+                    paddingRight: '2%',
+                    paddingBottom: '2%',
+                  }}>
                   <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
                     Yêu cầu ứng{' '}
                   </Badge>
                 </div>
                 <div className='two'>
-                  <textarea
-                    style={{ width: '100%' }}
-                    // value={confirmpassword}
+                  <Textarea
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
+                    w={'100%'}
+                    h={200}
                     onChange={(e) => setRequirements(e.target.value)}
                     type='text'
                     name='requirements'
@@ -406,16 +476,24 @@ const JobPosting = () => {
               </div>
 
               <div className='form_input'>
-                <div htmlFor='name' style={{ display: 'block', paddingTop: '2%', paddingRight: '2%', paddingBottom: '2%' }}>
+                <div
+                  htmlFor='name'
+                  style={{
+                    display: 'block',
+                    paddingTop: '2%',
+                    paddingRight: '2%',
+                    paddingBottom: '2%',
+                  }}>
                   <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
-                    {' '}
                     Quyền lợi
                   </Badge>
                 </div>
                 <div className='two'>
-                  <textarea
-                    style={{ width: '100%' }}
-                    // value={confirmpassword}
+                  <Textarea
+                    backgroundColor={'#ffffff'}
+                    fontSize={20}
+                    w={'100%'}
+                    h={200}
                     onChange={(e) => setInterest(e.target.value)}
                     type='text'
                     name='interest'
@@ -425,24 +503,32 @@ const JobPosting = () => {
               </div>
 
               <div className='form_input'>
-                <div htmlFor='name' style={{ display: 'block', paddingTop: '2%', paddingRight: '2%' }}>
+                <div
+                  htmlFor='name'
+                  style={{ display: 'block', paddingTop: '2%', paddingRight: '2%' }}>
                   <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
-                    {' '}
                     Hình ảnh
                   </Badge>
                 </div>
-                <input
+                <Input
+                  w={'100%'}
+                  backgroundColor={'#ffffff'}
                   type='file'
-                  // value={email}
+                  fontSize={20}
                   onChange={(e) => setImage(e.target.files[0])}
                   name='image'
                   id='image'
                 />
               </div>
 
-              <button style={{ backgroundColor: '#03c9d7' }} onClick={HandleSubmit} className='btn3'>
+              <Button
+                color={'white'}
+                backgroundColor='#03c9d7'
+                onClick={HandleSubmit}
+                borderRadius={20}
+                mb={10}>
                 Đăng tin
-              </button>
+              </Button>
             </form>
             <ToastContainer />
           </div>

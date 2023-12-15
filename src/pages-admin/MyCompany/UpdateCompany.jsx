@@ -65,14 +65,14 @@ export const UpdateCompany = ({ data }) => {
 
   return (
     <>
-      <Button onClick={onOpen} mt={4} w='200px' size='lg' color='#ffffff' backgroundColor='rgb(3, 201, 215)' variant='solid'>
+      <Button fontFamily={'Montserrat'} fontWeight={400} onClick={onOpen} mt={4} w='200px' size='lg' color='#ffffff' backgroundColor='rgb(3, 201, 215)' variant='solid'>
         Edit
       </Button>
       <ToastContainer position='bottom-right' autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme='light' />
 
       <Modal initialFocusRef={initialRef} finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent fontFamily={'Montserrat'} fontWeight={400}>
           <ModalHeader>Update your company</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
@@ -105,7 +105,7 @@ export const UpdateCompany = ({ data }) => {
 
           <ModalFooter>
             <Button onClick={handeUpdateCompany} color={'#ffffff'} backgroundColor='rgb(3, 201, 215)' mr={3}>
-              {uploading? (<Spinner/> ) :("Save")}
+              {uploading ? <Spinner /> : 'Save'}
             </Button>
             <Button onClick={onClose}>Cancel</Button>
           </ModalFooter>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Img, Input, Stack } from "@chakra-ui/react";
+import { Box, Button, Img, Input, Stack } from "@chakra-ui/react";
 import { eventService } from "../../Service/event.service";
 import { ToastContainer, toast } from "react-toastify";
 import { Textarea } from "@chakra-ui/react";
@@ -117,7 +117,7 @@ export const EventAdd = () => {
                 pauseOnHover
                 theme="light"
             />
-            <div className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
+            <Box fontFamily={'Montserrat'} fontWeight={400} className="m-4 md:m-10 mt-24 p-10 bg-white dark:bg-secondary-dark-bg rounded-3xl">
                 <Header category="Add Event" title="Editor" />
 
                 <Stack spacing={5}>
@@ -245,7 +245,7 @@ export const EventAdd = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </Box>
         </>
     );
 };

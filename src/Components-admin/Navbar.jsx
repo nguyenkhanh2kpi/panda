@@ -8,7 +8,7 @@ import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import { Cart, Chat, Notification, UserProfile } from ".";
 import { useStateContext } from "../contexts/ContextProvider";
-import { Avatar, WrapItem } from "@chakra-ui/react";
+import { Avatar, Box, WrapItem } from "@chakra-ui/react";
 
 const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
     <TooltipComponent content={title} position="BottomCenter">
@@ -91,9 +91,10 @@ const Navbar = () => {
           icon={<RiNotification3Line />}
         /> */}
                 <TooltipComponent content="Profile" position="BottomCenter">
-                    <div
+                    <Box
                         className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
                         onClick={() => handleClick("userProfile")}
+                        fontFamily={'Montserrat'} fontWeight={400}
                     >
                         <WrapItem>
                             <Avatar
@@ -112,7 +113,7 @@ const Navbar = () => {
                             </span>
                         </p>
                         <MdKeyboardArrowDown className="text-gray-400 text-14" />
-                    </div>
+                    </Box>
                 </TooltipComponent>
 
                 {isClicked.cart && <Cart />}
