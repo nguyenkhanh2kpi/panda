@@ -31,7 +31,28 @@ const removeBlacklist = async (token, id) => {
         'Content-Type': 'application/json',
       },
     }
-    const res = await axios.post(`${API_URL}/blacklist/remove/4`,null, config)
+    const res = await axios.post(`${API_URL}/blacklist/remove/${id}`,null, config)
+    return res.data
+  } catch (error) {
+    const axiosError = error
+    if (axiosError && axiosError.response && axiosError.response.status === 403) {
+      throw new Error('no_permistion')
+    } else {
+      throw error
+    }
+  }
+}
+
+
+const getAllUser = async (token) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    }
+    const res = await axios.get(`${API_URL}/user`,config)
     return res.data
   } catch (error) {
     const axiosError = error
@@ -46,4 +67,5 @@ const removeBlacklist = async (token, id) => {
 export const userService = {
   addBlacklist,
   removeBlacklist,
+  getAllUser,
 }

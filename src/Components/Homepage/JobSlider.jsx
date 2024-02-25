@@ -54,7 +54,7 @@ const JobSlider = () => {
               spaceBetween: 10,
             },
           }}>
-          {events
+          {events.filter((event) => event.status === true)
             .map((event) => (
               <SwiperSlide>
                 <div>

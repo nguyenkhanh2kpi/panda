@@ -1,0 +1,5 @@
+applications:
+  - name: pandajob-react
+    docker-image: nguyenkhanh2kpi/qltd2
+    instances: 1
+    memory: 1G

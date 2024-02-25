@@ -131,7 +131,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -159,7 +158,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -171,7 +169,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -198,7 +195,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -226,7 +222,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -251,7 +246,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -276,7 +270,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -310,7 +303,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -336,7 +328,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -360,7 +351,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -386,7 +376,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -413,7 +402,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -446,7 +434,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>
@@ -487,7 +474,6 @@ function JobDetailRecruiter() {
                   borderRadius='full'
                   fontSize='14px'
                   px='2'
-                  colorScheme='teal'
                   ml='2px'
                   mt='20px'
                   mb='10px'>

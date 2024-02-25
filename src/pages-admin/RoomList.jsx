@@ -52,29 +52,75 @@ const RoomList = () => {
     dispatch(loadRoom())
   }, [])
 
+  const format = (endDateString) => {
+    const endDate = new Date(endDateString)
+
+    if (isNaN(endDate)) {
+      return 'Invalid date'
+    }
+
+    const formattedEndDate = endDate.toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+    })
+
+    return formattedEndDate
+  }
   const roomList = useSelector((store) => store.room.data)
   const roomdatas = roomList.map((job) => {
     return (
       <Link to={`/addCandidate/${job.jobPostId}/${job.id}`}>
-        <HStack fontFamily={'Montserrat'} fontWeight={400} mb='30px' mt='20px' w={'100%'} backgroundColor={'#FFFFFF'} borderRadius='lg'>
-          <Box borderRadius={20} h='100%' key={job.id} w='100%' boxShadow='rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px' p='20px 20px 0 20px'>
-            <Box pt='10px' fontWeight='semibold' as='h4' lineHeight='tight' noOfLines={1} pb='10px' fontSize='20px' borderRadius='lg' pl='10px' mb='10px'>
-              Tên phòng : {job.roomName}
+        <HStack
+          fontFamily={'Montserrat'}
+          fontWeight={400}
+          mb='30px'
+          mt='20px'
+          w={'100%'}
+          backgroundColor={'#FFFFFF'}
+          borderRadius='lg'>
+          <Box
+            borderRadius={20}
+            h='100%'
+            key={job.id}
+            w='100%'
+            boxShadow='rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px'
+            p='20px 20px 0 20px'>
+            <Box
+              pt='10px'
+              fontWeight='semibold'
+              as='h4'
+              lineHeight='tight'
+              noOfLines={1}
+              pb='10px'
+              fontSize='20px'
+              borderRadius='lg'
+              pl='10px'
+              mb='10px'>
+              Tên phòng : {job.roomName} - {job.jobName}
             </Box>
-            <Image style={{ width: '80px' }} src='https://cdn-icons-png.flaticon.com/512/5961/5961660.png' />
+            <Image
+              style={{ width: '80px' }}
+              src='https://cdn-icons-png.flaticon.com/512/5961/5961660.png'
+            />
             <br></br>
             <Flex>
               <Box display='flex' mr='50px' mb='15px'>
-                <BsBag style={{ height: '20px' }} />
                 <Text ml='10px'> Mô tả : {job.roomDescription}</Text>
               </Box>
             </Flex>
-            <Button disabled='true'>{job.endDate} </Button>
-            <Button ml={2} style={{ backgroundColor: '#00FF00' }} disabled='true'>
+            <Button> {format(job.endDate)} </Button>
+            <Button ml={2} style={{ backgroundColor: '#00FF00' }}>
               {job.listCandidate.length} người tham gia{' '}
             </Button>
-            <Button ml={2} style={{ backgroundColor: '#FFFF00' }} disabled='true'>
+            <Button ml={2} style={{ backgroundColor: '#FFFF00' }}>
               {job.listInterviewer.length} người phỏng vấn{' '}
+            </Button>
+            <Button ml={2} color={'white'} backgroundColor={'green'}>
+              {job.status}
             </Button>
             {/* <Button data-value={job.id}>delete</Button> */}
 

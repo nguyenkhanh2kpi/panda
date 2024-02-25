@@ -3,7 +3,7 @@ import { Badge, Box, Button, Center, Image, Spinner, Text } from '@chakra-ui/rea
 import axios from 'axios'
 import './Both.css'
 import { ToastContainer, toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 // import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUserInfo } from '../../redux/UserInfo/Action'
@@ -13,6 +13,7 @@ import { IoEyeOffOutline } from 'react-icons/io5'
 const UserInfo = () => {
   const navigate = useNavigate()
 
+  
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(loadUserInfo())
@@ -108,9 +109,6 @@ const UserInfo = () => {
   }
   const SubmitHandler = async (e) => {
     try {
-      // console.log("test CV null",CV.length==0?"bi null":"ko null")
-      // console.log("test CV ",CV.length)
-      //    console.log("test CV2 ",testCV)
       if (testCV != null && !window.testCV) {
         console.log('vao dc r')
         const formDataCV = new FormData()
@@ -182,7 +180,10 @@ const UserInfo = () => {
           })
         })
 
-      localStorage.setItem('avatar', JSON.stringify(ImageAva.length == 0 ? user.avatar : ImageAva.at(0)))
+      localStorage.setItem(
+        'avatar',
+        JSON.stringify(ImageAva.length == 0 ? user.avatar : ImageAva.at(0))
+      )
       toast.success('Update Info Successfuly', {
         position: 'top-center',
       })
@@ -205,7 +206,14 @@ const UserInfo = () => {
               Thông tin cá nhân
             </Box>
             <form>
-              <Image borderRadius='full' mr={'8px'} w={'100px'} h={'100px'} style={{ marginBottom: '10px', marginTop: '20px' }} src={user.avatar} />
+              <Image
+                borderRadius='full'
+                mr={'8px'}
+                w={'100px'}
+                h={'100px'}
+                style={{ marginBottom: '10px', marginTop: '20px' }}
+                src={user.avatar}
+              />
               <div className='form_input'>
                 <label htmlFor='email'>
                   <p style={{ marginRight: '5px', width: '130px' }}>
@@ -214,7 +222,13 @@ const UserInfo = () => {
                     </Badge>
                   </p>
                 </label>
-                <input type='text' value={email != null ? email : user.email} onChange={(e) => setEmail(e.target.value)} name='email' id='email' />
+                <input
+                  type='text'
+                  value={email != null ? email : user.email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  name='email'
+                  id='email'
+                />
               </div>
 
               <div className='form_input'>
@@ -225,7 +239,13 @@ const UserInfo = () => {
                   </Badge>
                 </label>
 
-                <input type='text' value={fullName != null ? fullName : user.fullName} onChange={(e) => setFullName(e.target.value)} name='fullName' id='fullName' />
+                <input
+                  type='text'
+                  value={fullName != null ? fullName : user.fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  name='fullName'
+                  id='fullName'
+                />
               </div>
               <div className='form_input'>
                 <label htmlFor='address'>
@@ -235,7 +255,13 @@ const UserInfo = () => {
                   </Badge>
                 </label>
 
-                <input type='text' value={address != null ? address : user.address} onChange={(e) => setAddress(e.target.value)} name='address' id='address' />
+                <input
+                  type='text'
+                  value={address != null ? address : user.address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  name='address'
+                  id='address'
+                />
               </div>
               <div className='form_input'>
                 <label htmlFor='phone'>
@@ -245,18 +271,41 @@ const UserInfo = () => {
                   </Badge>
                 </label>
 
-                <input type='text' value={phone != null ? phone : user.phone} onChange={(e) => setPhone(e.target.value)} name='phone' id='phone' />
+                <input
+                  type='text'
+                  value={phone != null ? phone : user.phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  name='phone'
+                  id='phone'
+                />
               </div>
 
               <div className='form_input'>
                 <label htmlFor='phone'>
                   <p style={{ marginRight: '5px', width: '130px' }}></p>
-                  <Badge borderRadius='full' fontSize='14px' px='2' >
+                  <Badge borderRadius='full' fontSize='14px' px='2'>
                     Giới tính
                   </Badge>
                 </label>
 
-                <input type='text' value={gender != null ? gender : user.gender} onChange={(e) => setGender(e.target.value)} name='sex' id='sex' />
+                <select
+                style={{padding:3, borderRadius: "10px"}}
+                  value={gender != null ? gender : user.gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  name='sex'
+                  id='sex'>
+                  <option value='male'>MALE</option>
+                  <option value='female'>FEMALE</option>
+                  <option value='other'>NON_BINARY</option>
+                </select>
+
+                {/* <input
+                  type='text'
+                  value={gender != null ? gender : user.gender}
+                  onChange={(e) => setGender(e.target.value)}
+                  name='sex'
+                  id='sex'
+                /> */}
               </div>
 
               <div className='form_input'>
@@ -267,7 +316,13 @@ const UserInfo = () => {
                   </Badge>
                 </label>
 
-                <input type='text' value={language != null ? language : user.language} onChange={(e) => setLanguage(e.target.value)} name='language' id='language' />
+                <input
+                  type='text'
+                  value={language != null ? language : user.language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                  name='language'
+                  id='language'
+                />
               </div>
 
               <div className='form_input'>
@@ -278,7 +333,13 @@ const UserInfo = () => {
                   </Badge>
                 </label>
 
-                <input type='text' value={skill != null ? skill : user.skill} onChange={(e) => setSkill(e.target.value)} name='skill' id='skill' />
+                <input
+                  type='text'
+                  value={skill != null ? skill : user.skill}
+                  onChange={(e) => setSkill(e.target.value)}
+                  name='skill'
+                  id='skill'
+                />
               </div>
 
               <div className='form_input'>
@@ -289,7 +350,13 @@ const UserInfo = () => {
                   </Badge>
                 </label>
 
-                <input type='text' value={experience != null ? experience : user.experience} onChange={(e) => setExperience(e.target.value)} name='experience' id='experience' />
+                <input
+                  type='text'
+                  value={experience != null ? experience : user.experience}
+                  onChange={(e) => setExperience(e.target.value)}
+                  name='experience'
+                  id='experience'
+                />
               </div>
 
               <div className='form_input'>
@@ -300,7 +367,13 @@ const UserInfo = () => {
                   </Badge>
                 </label>
 
-                <input type='text' value={description != null ? description : user.description} onChange={(e) => setDescription(e.target.value)} name='description' id='description' />
+                <input
+                  type='text'
+                  value={description != null ? description : user.description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  name='description'
+                  id='description'
+                />
               </div>
 
               <div className='form_input'>
@@ -309,9 +382,17 @@ const UserInfo = () => {
                   <Badge borderRadius='full' fontSize='14px' px='2'>
                     CV
                   </Badge>
+                  <Box p={2}>
+                    CV link: <Text>{user.cv_pdf ? user.cv_pdf : 'Chưa có'}</Text>
+                  </Box>
                 </label>
 
-                <input type='file' onChange={(e) => setTestCV(e.target.files[0])} name='cv_pdf' id='cv_pdf' />
+                <input
+                  type='file'
+                  onChange={(e) => setTestCV(e.target.files[0])}
+                  name='cv_pdf'
+                  id='cv_pdf'
+                />
               </div>
 
               <div className='form_input'>
@@ -322,7 +403,12 @@ const UserInfo = () => {
                   </Badge>
                 </label>
 
-                <input type='file' onChange={(e) => setTestAva(e.target.files[0])} name='avatar' id='avatar' />
+                <input
+                  type='file'
+                  onChange={(e) => setTestAva(e.target.files[0])}
+                  name='avatar'
+                  id='avatar'
+                />
               </div>
               <Button color={'white'} mb={10} backgroundColor={'#87b2c4'} onClick={SubmitHandler}>
                 Cập nhật thông tin
@@ -338,7 +424,14 @@ const UserInfo = () => {
               <div className='form_input'>
                 <label htmlFor='password'>Mật khẩu cũ</label>
                 <div className='two'>
-                  <input type={!passShow ? 'password' : 'text'} value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} name='oldPassword' id='oldPassword' placeholder='Enter Your Old password' />
+                  <input
+                    type={!passShow ? 'password' : 'text'}
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
+                    name='oldPassword'
+                    id='oldPassword'
+                    placeholder='Enter Your Old password'
+                  />
                   <div className='showpass' onClick={() => setPassShow(!passShow)}>
                     {!passShow ? <IoEyeOutline /> : <IoEyeOffOutline />}
                   </div>
@@ -348,7 +441,14 @@ const UserInfo = () => {
               <div className='form_input'>
                 <label htmlFor='password'>Nhập mật khẩu mới</label>
                 <div className='two'>
-                  <input type={!passShow ? 'password' : 'text'} value={newPassword1} onChange={(e) => setNewPassword1(e.target.value)} name='newPassword1' id='newPassword1' placeholder='Enter Your New password' />
+                  <input
+                    type={!passShow ? 'password' : 'text'}
+                    value={newPassword1}
+                    onChange={(e) => setNewPassword1(e.target.value)}
+                    name='newPassword1'
+                    id='newPassword1'
+                    placeholder='Enter Your New password'
+                  />
                   <div className='showpass' onClick={() => setPassShow(!passShow)}>
                     {!passShow ? <IoEyeOutline /> : <IoEyeOffOutline />}
                   </div>
@@ -357,13 +457,24 @@ const UserInfo = () => {
               <div className='form_input'>
                 <label htmlFor='password'>Nhập lại mật khẩu mới</label>
                 <div className='two'>
-                  <input type={!passShow ? 'password' : 'text'} value={newPassword2} onChange={(e) => setNewPassword2(e.target.value)} name='newPassword2' id='newPassword2' placeholder='Enter Your New password' />
+                  <input
+                    type={!passShow ? 'password' : 'text'}
+                    value={newPassword2}
+                    onChange={(e) => setNewPassword2(e.target.value)}
+                    name='newPassword2'
+                    id='newPassword2'
+                    placeholder='Enter Your New password'
+                  />
                   <div className='showpass' onClick={() => setPassShow(!passShow)}>
                     {!passShow ? <IoEyeOutline /> : <IoEyeOffOutline />}
                   </div>
                 </div>
               </div>
-              <Button color={'white'} mb={10} backgroundColor={'#87b2c4'} onClick={submitHandlerPassword}>
+              <Button
+                color={'white'}
+                mb={10}
+                backgroundColor={'#87b2c4'}
+                onClick={submitHandlerPassword}>
                 Cập nhật
               </Button>
             </form>

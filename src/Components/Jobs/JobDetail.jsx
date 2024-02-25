@@ -1,4 +1,15 @@
-import { Alert, AlertIcon, Box, Button, Image, Text, useDisclosure, SimpleGrid, Badge, Link } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertIcon,
+  Box,
+  Button,
+  Image,
+  Text,
+  useDisclosure,
+  SimpleGrid,
+  Badge,
+  Link,
+} from '@chakra-ui/react'
 import React, { Fragment, useState } from 'react'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
@@ -17,6 +28,7 @@ import { IoHourglassOutline } from 'react-icons/io5'
 import { IoMedalOutline } from 'react-icons/io5'
 import { AiOutlineUser, AiOutlineUsergroupAdd } from 'react-icons/ai'
 import { companyService } from '../../Service/company.service'
+import { loadUserInfo } from '../../redux/UserInfo/Action'
 
 function JobDetail() {
   const [companies, setCompanies] = useState([])
@@ -24,25 +36,34 @@ function JobDetail() {
     companyService.getAllCompany().then((res) => setCompanies(res))
   }, [])
 
-  const accessToken = JSON.parse(localStorage.getItem('data')) !== null ? JSON.parse(localStorage.getItem('data')).access_token : null
+  const accessToken =
+    JSON.parse(localStorage.getItem('data')) !== null
+      ? JSON.parse(localStorage.getItem('data')).access_token
+      : null
   const submitHandler = async (e) => {
-    console.log(e.target.value)
-    const jobId = e.target.value
-    try {
-      const { Data } = await axios.post(`${hostName}/apply-job`, jobId, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          'Content-Type': 'application/json',
-        },
+    if (user.cv_pdf === null) {
+      toast.info('Hãy tạo CV trong profile trước', {
+        position: 'top-center',
       })
+    } else {
+      console.log(e.target.value)
+      const jobId = e.target.value
+      try {
+        const { Data } = await axios.post(`${hostName}/apply-job`, jobId, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            'Content-Type': 'application/json',
+          },
+        })
 
-      toast.success('Apply Job Successfully', {
-        position: 'top-center',
-      })
-    } catch (error) {
-      toast.error(error, {
-        position: 'top-center',
-      })
+        toast.success('Apply Job Successfully', {
+          position: 'top-center',
+        })
+      } catch (error) {
+        toast.error(error, {
+          position: 'top-center',
+        })
+      }
     }
   }
   const params = useParams()
@@ -50,15 +71,25 @@ function JobDetail() {
 
   useEffect(() => {
     dispatch(loadJobDetail(params.id))
+    if (accessToken != null) {
+      dispatch(loadUserInfo())
+    }
   }, [params.id])
   const data = useSelector((store) => store.jobDetail.data)
   const company = companies.filter((item) => item.userId === data.user_id)
+  const user = useSelector((store) => store.userInfo.data)
+
   if (data != null) {
     return (
       <Box mt='100px' fontFamily={'Montserrat'}>
         <Box display='flex' justifyContent='space-evenly'>
           <Box w='850px'>
-            <Box borderRadius={7} ml='50px' p='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em' color='RGBA(0, 0, 0, 0.76)'>
+            <Box
+              borderRadius={7}
+              ml='50px'
+              p='20px'
+              boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'
+              color='RGBA(0, 0, 0, 0.76)'>
               <Text fontSize='20px' fontWeight='bold'>
                 {data.name}
               </Text>
@@ -120,7 +151,14 @@ function JobDetail() {
               </Box>
             </Box>
 
-            <Box borderRadius={7} mb={20} mt='30px' ml='50px' p='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em' color='RGBA(0, 0, 0, 0.76)'>
+            <Box
+              borderRadius={7}
+              mb={20}
+              mt='30px'
+              ml='50px'
+              p='20px'
+              boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'
+              color='RGBA(0, 0, 0, 0.76)'>
               <Text fontSize='20px' fontWeight='bold'>
                 Job description
               </Text>
@@ -188,7 +226,10 @@ function JobDetail() {
             </Box>
           </Box>
           <Box width='400px' height='400px'>
-            <Box borderRadius={7} p='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'>
+            <Box
+              borderRadius={7}
+              p='20px'
+              boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'>
               <Text fontSize='18px' mb='20px' fontWeight='bold'>
                 Genaral information
               </Text>
@@ -252,7 +293,11 @@ function JobDetail() {
               </Box>
             </Box>
 
-            <Box borderRadius={7} p='20px' mt='20px' boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'>
+            <Box
+              borderRadius={7}
+              p='20px'
+              mt='20px'
+              boxShadow='rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em'>
               <Text fontSize='18px' mb='20px' fontWeight='bold'>
                 Company
               </Text>

@@ -53,6 +53,10 @@ export const UpdateCompany = ({ data }) => {
   }
 
   const handeUpdateCompany = async () => {
+    if (!company.name || !company.website || !company.address || !company.phone || !company.info) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
     setUploading(true)
     await companyService
       .updateCompany(accessToken, company)

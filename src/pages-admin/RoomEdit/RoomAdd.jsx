@@ -11,19 +11,13 @@ import { Box, Button, Input, Select } from '@chakra-ui/react'
 import { hostName } from '../../global'
 
 const RoomAdd = () => {
+  const userId = JSON.parse(localStorage.getItem('data')).data.userInfo.id
   const dispatch = useDispatch()
   useEffect(() => {
-    // getData(typeOfProduct).then((res) => setProductArr(res));
     dispatch(loadJob())
   }, [])
-
   const data = useSelector((store) => store.job.data)
-  const [passShow, setPassShow] = useState(false)
-  const [cpassShow, setCPassShow] = useState(false)
   const navigate = useNavigate()
-
-  // =============================================================================================================
-
   const accessToken = JSON.parse(localStorage.getItem('data')).access_token
   const [jobName, setJObName] = useState('')
   const [roomName, setRoomName] = useState('')
@@ -32,8 +26,6 @@ const RoomAdd = () => {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [linkmeet, setLinkmeet] = useState('')
-
-  const handleSubmit2 = async (e) => {}
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (jobName === '') {
@@ -58,6 +50,10 @@ const RoomAdd = () => {
       })
     } else if (endDate === '') {
       toast.error('end Date is required!', {
+        position: 'top-center',
+      })
+    } else if (startDate >= endDate) {
+      toast.error('Start date should be before the end date', {
         position: 'top-center',
       })
     } else {
@@ -124,19 +120,19 @@ const RoomAdd = () => {
                   Tên công việc
                 </label>
                 <Select
-                  color={'#8292b4'}
                   borderColor={'#8292b4'}
                   placeholder='Tên công việc'
+                  backgroundColor={'#ffffff'}
                   mt='10px'
                   mb='10px'
                   onChange={(e) => {
-                    console.log(e.target.value)
                     setJObName(e.target.value)
                   }}>
-                  {data.map((i) => {
-                    return <option value={i.id}>{i.name}</option>
-                  })}
-                  <option></option>
+                  {data
+                    .filter((job) => job.status === true && job.user_id === userId)
+                    .map((i) => {
+                      return <option value={i.id}>{i.name}</option>
+                    })}
                 </Select>
               </div>
 
@@ -145,7 +141,6 @@ const RoomAdd = () => {
                 <input
                   style={{ width: '100%' }}
                   type='text'
-                  // value={username}
                   onChange={(e) => setRoomName(e.target.value)}
                   name='position'
                   id='position'
@@ -156,7 +151,6 @@ const RoomAdd = () => {
                 <input
                   style={{ width: '100%' }}
                   type='text'
-                  // value={username}
                   onChange={(e) => setRoomSkill(e.target.value)}
                   name='position'
                   id='position'
@@ -168,7 +162,6 @@ const RoomAdd = () => {
                 <input
                   type='text'
                   style={{ width: '100%' }}
-                  // value={username}
                   onChange={(e) => setRoomDescription(e.target.value)}
                   name='position'
                   id='position'
@@ -177,12 +170,26 @@ const RoomAdd = () => {
 
               <div className='form_input'>
                 <label htmlFor='position'>Ngày bắt đầu </label>
-                <Input onChange={(e) => setStartDate(e.target.value)} name='startDate' backgroundColor={'#FFFFFF'} minW='100%' placeholder='Room description' type='datetime-local' />
+                <Input
+                  onChange={(e) => setStartDate(e.target.value)}
+                  name='startDate'
+                  backgroundColor={'#FFFFFF'}
+                  minW='100%'
+                  placeholder='Room description'
+                  type='datetime-local'
+                />
               </div>
 
               <div className='form_input'>
                 <label htmlFor='position'>Ngày kết thúc</label>
-                <Input onChange={(e) => setEndDate(e.target.value)} name='startDate' backgroundColor={'#FFFFFF'} minW='100%' placeholder='Room description' type='datetime-local' />
+                <Input
+                  onChange={(e) => setEndDate(e.target.value)}
+                  name='startDate'
+                  backgroundColor={'#FFFFFF'}
+                  minW='100%'
+                  placeholder='Room description'
+                  type='datetime-local'
+                />
               </div>
 
               <div className='form_input'>
@@ -190,14 +197,17 @@ const RoomAdd = () => {
                 <input
                   style={{ width: '100%' }}
                   type='text'
-                  // value={username}
                   onChange={(e) => setLinkmeet(e.target.value)}
                   name='position'
                   id='position'
                 />
               </div>
 
-              <Button color='white' mb={10} backgroundColor='rgb(3, 201, 215)' onClick={handleSubmit}>
+              <Button
+                color='white'
+                mb={10}
+                backgroundColor='rgb(3, 201, 215)'
+                onClick={handleSubmit}>
                 Thêm phòng
               </Button>
             </form>

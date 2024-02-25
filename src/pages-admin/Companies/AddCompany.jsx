@@ -1,4 +1,17 @@
-import { AlertDialog, AlertDialogBody, AlertDialogContent, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, Button, FormControl, FormLabel, Input, Spinner, useDisclosure } from '@chakra-ui/react'
+import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Spinner,
+  useDisclosure,
+} from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import { interviewerService } from '../../Service/interviewer.service'
@@ -20,6 +33,23 @@ export const AddCompany = () => {
   }
 
   const handleAddClick = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+    if (!input.email || !input.password) {
+      toast.error('Please provide email and password')
+      return
+    }
+
+    if (!emailRegex.test(input.email)) {
+      toast.error('Please provide a valid email address')
+      return
+    }
+
+    if (input.password.length < 8) {
+      toast.error('Password should be at least 8 characters long')
+      return
+    }
+    
     setIsLoad(true)
     companyService
       .registerReccer(accessToken, input)
@@ -35,12 +65,34 @@ export const AddCompany = () => {
   }
   return (
     <>
-      <ToastContainer position='bottom-right' autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme='light' />
-      <Button fontFamily={'Montserrat'} fontWeight={400} ml={"8%"} color='white' backgroundColor='rgb(3, 201, 215)' onClick={onOpen}>
+      <ToastContainer
+        position='bottom-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
+      <Button
+        fontFamily={'Montserrat'}
+        fontWeight={400}
+        ml={'8%'}
+        color='white'
+        backgroundColor='rgb(3, 201, 215)'
+        onClick={onOpen}>
         + Thêm thành viên
       </Button>
 
-      <AlertDialog fontFamily={'Montserrat'} fontWeight={400} isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onClose}>
+      <AlertDialog
+        fontFamily={'Montserrat'}
+        fontWeight={400}
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}>
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize='lg' fontWeight='bold'>
@@ -50,9 +102,19 @@ export const AddCompany = () => {
             <AlertDialogBody>
               <FormControl isRequired>
                 <FormLabel>Email</FormLabel>
-                <Input name='email' placeholder='email' value={input.email} onChange={handleInputChange} />
+                <Input
+                  name='email'
+                  placeholder='email'
+                  value={input.email}
+                  onChange={handleInputChange}
+                />
                 <FormLabel>Password</FormLabel>
-                <Input name='password' placeholder='password' value={input.password} onChange={handleInputChange} />
+                <Input
+                  name='password'
+                  placeholder='password'
+                  value={input.password}
+                  onChange={handleInputChange}
+                />
               </FormControl>
             </AlertDialogBody>
 
@@ -65,7 +127,11 @@ export const AddCompany = () => {
                 <Spinner m={4} />
               ) : (
                 <>
-                  <Button color='white' backgroundColor='rgb(3, 201, 215)' ml={3} onClick={handleAddClick}>
+                  <Button
+                    color='white'
+                    backgroundColor='rgb(3, 201, 215)'
+                    ml={3}
+                    onClick={handleAddClick}>
                     Add
                   </Button>
                 </>

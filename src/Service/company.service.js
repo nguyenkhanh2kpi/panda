@@ -71,6 +71,24 @@ const registerReccer = async (token, form) => {
 }
 
 
+
+const changeStatusHiring = async (token, string, id) => {
+  try {
+    let config = { headers: { Authorization: `Bearer ${token}` } }
+    const res = await axios.post(`${API_URL}/interview-detail/hiring-status/${id}`, {status:string}, config)
+    return res.data
+  } catch (error) {
+    const axiosError = error
+    if (axiosError && axiosError.response && axiosError.response.status === 403) {
+      throw new Error('no_permistion')
+    } else {
+      throw error
+    }
+  }
+}
+
+
+
 const getListCandidate = async (token) => {
     try {
       let config = { headers: { Authorization: `Bearer ${token}` } }
@@ -81,6 +99,7 @@ const getListCandidate = async (token) => {
     }
   }
 
+
 export const companyService = {
   getAllCompany,
   getMyCompany,
@@ -89,4 +108,5 @@ export const companyService = {
   updateCompany,
   registerReccer,
   getListCandidate,
+  changeStatusHiring,
 }

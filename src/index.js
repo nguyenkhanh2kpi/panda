@@ -9,7 +9,7 @@ import { ContextProvider } from "./contexts/ContextProvider";
 import { registerLicense } from '@syncfusion/ej2-base';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-registerLicense('Ngo9BigBOggjHTQxAR8/V1NHaF1cW2hIfEx0TXxbf1xzZFRGal9QTnRdUj0eQnxTdEZiWH1WcnZRQWRZV0FwVw==');
+registerLicense('Ngo9BigBOggjHTQxAR8/V1NHaF1cWmhIfEx1RHxQdld5ZFRHallYTnNWUj0eQnxTdEFjWH9fcXRUQmRVUkRxWw==');
 root.render(
     <ChakraProvider>
       <ContextProvider> <App /></ContextProvider>

@@ -1,8 +1,19 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import { Avatar, Box, Button, HStack, Img, Link, Spinner, Stack, Text, VStack } from '@chakra-ui/react'
+import {
+  Avatar,
+  Box,
+  Button,
+  HStack,
+  Img,
+  Link,
+  Spinner,
+  Stack,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { companyService } from '../../Service/company.service'
-
+import { ToastContainer, toast } from 'react-toastify'
 
 export const InterviewResult = () => {
   const accessToken = JSON.parse(localStorage.getItem('data')).access_token
@@ -18,8 +29,32 @@ export const InterviewResult = () => {
       .catch((err) => console.log(err.message))
   }, [change])
 
+  const handleClick = (status, id) => {
+    companyService
+      .changeStatusHiring(accessToken, status ? 'hired' : 'not hired', id)
+      .then((res) => toast.success(res.message))
+      .catch((er) => console.log(er))
+  }
+
   return (
-    <Box fontFamily={'Montserrat'} fontWeight={400} backgroundColor={'#e9f3f5'} p={30} overflow='hidden'>
+    <Box
+      fontFamily={'Montserrat'}
+      fontWeight={400}
+      backgroundColor={'#e9f3f5'}
+      p={30}
+      overflow='hidden'>
+      <ToastContainer
+        position='bottom-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='light'
+      />
       <VStack>
         <Box w={'100%'}>{/* <AddInterviewer /> */}</Box>
         <Text pt='20px' fontWeight='black' w='100%'>
@@ -28,10 +63,18 @@ export const InterviewResult = () => {
         <Box w='100%' backgroundColor='#ffffff' p='2%' borderRadius={20}>
           <VStack w='100%'>
             {candidates.map((candidate) => (
-              <Box p={2} borderRadius={20} w='100%' _hover={{ borderWidth: '1px', transform: 'scale(1.001)' }}>
+              <Box
+                p={2}
+                borderRadius={20}
+                w='100%'
+                _hover={{ borderWidth: '1px', transform: 'scale(1.001)' }}>
                 <HStack justifyContent={'space-between'}>
                   <HStack spacing={5}>
-                    <Avatar size='xl' name={candidate.name ? candidate.name : candidate.email} src={candidate.avatar} />
+                    <Avatar
+                      size='xl'
+                      name={candidate.name ? candidate.name : candidate.email}
+                      src={candidate.avatar}
+                    />
                     <VStack>
                       <Text w='100%' fontWeight={'black'}>
                         Full Name: {candidate.name}
@@ -55,10 +98,19 @@ export const InterviewResult = () => {
                     </Link>
                   </VStack>
 
-                  <Button color={'white'} backgroundColor={'#30f0b6'}>
-                    Change
+                  <Button
+                    onClick={() => handleClick(true, candidate.detailId)}
+                    color={'white'}
+                    backgroundColor={'#42edd1'}>
+                    Hiring
                   </Button>
 
+                  <Button
+                    onClick={() => handleClick(false, candidate.detailId)}
+                    color={'white'}
+                    backgroundColor={'#7a2d48'}>
+                    Not Hiring
+                  </Button>
                 </HStack>
               </Box>
             ))}

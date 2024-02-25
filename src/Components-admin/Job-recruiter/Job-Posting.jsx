@@ -212,7 +212,7 @@ const JobPosting = () => {
             <form>
               <div>
                 <label htmlFor='name'>
-                  <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
+                  <Badge borderRadius='full' fontSize='14px' p='2'>
                     Tên công việc
                   </Badge>
                 </label>
@@ -231,7 +231,7 @@ const JobPosting = () => {
 
               <div>
                 <label htmlFor='name'>
-                  <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
+                  <Badge borderRadius='full' fontSize='14px' p='2' >
                     Địa chỉ làm việc
                   </Badge>
                 </label>
@@ -253,7 +253,7 @@ const JobPosting = () => {
                   <div
                     htmlFor='name'
                     style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
-                    <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
+                    <Badge borderRadius='full' fontSize='14px' x p='2' >
                       Mức lương
                     </Badge>
                   </div>
@@ -277,7 +277,7 @@ const JobPosting = () => {
                 <Box mt={4} className='flex' style={{ marginLeft: '10px' }}>
                   <HStack>
                     <Box htmlFor='name' style={{ display: 'block', paddingRight: '2%' }}>
-                      <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
+                      <Badge borderRadius='full' fontSize='14px' p='2'>
                         Hình thức làm việc
                       </Badge>
                     </Box>
@@ -299,7 +299,7 @@ const JobPosting = () => {
                   <div
                     htmlFor='name'
                     style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
-                    <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
+                    <Badge borderRadius='full' fontSize='14px' p='2' >
                       Địa điểm
                     </Badge>
                   </div>
@@ -317,7 +317,7 @@ const JobPosting = () => {
                 </div>
                 <Box mt={6} className='flex' style={{ marginLeft: '10px' }}>
                   <div htmlFor='name' style={{ display: 'block', paddingRight: '2%' }}>
-                    <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
+                    <Badge borderRadius='full' fontSize='14px' p='2' >
                       Ngôn ngữ
                     </Badge>
                   </div>
@@ -338,7 +338,7 @@ const JobPosting = () => {
                   <div
                     htmlFor='name'
                     style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
-                    <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
+                    <Badge borderRadius='full' fontSize='14px' x p='2'>
                       Giới tính
                     </Badge>
                   </div>
@@ -357,7 +357,7 @@ const JobPosting = () => {
                   <div
                     htmlFor='name'
                     style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
-                    <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
+                    <Badge borderRadius='full' fontSize='14px' x p='2'>
                       Số lượng
                     </Badge>
                   </div>
@@ -379,7 +379,7 @@ const JobPosting = () => {
                   <div
                     htmlFor='name'
                     style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
-                    <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
+                    <Badge borderRadius='full' fontSize='14px' x p='2' >
                       Vị trí tuyển dụng
                     </Badge>
                   </div>
@@ -397,7 +397,7 @@ const JobPosting = () => {
                   <div
                     htmlFor='name'
                     style={{ display: 'block', paddingTop: '7%', paddingRight: '2%' }}>
-                    <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
+                    <Badge borderRadius='full' fontSize='14px' x p='2'>
                       Kinh nghiệm
                     </Badge>
                   </div>
@@ -429,7 +429,7 @@ const JobPosting = () => {
                     paddingRight: '2%',
                     paddingBottom: '2%',
                   }}>
-                  <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
+                  <Badge borderRadius='full' fontSize='14px' x p='2' >
                     Mô tả công việc
                   </Badge>
                 </div>
@@ -457,7 +457,7 @@ const JobPosting = () => {
                     paddingRight: '2%',
                     paddingBottom: '2%',
                   }}>
-                  <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
+                  <Badge borderRadius='full' fontSize='14px' x p='2' >
                     Yêu cầu ứng{' '}
                   </Badge>
                 </div>
@@ -484,7 +484,7 @@ const JobPosting = () => {
                     paddingRight: '2%',
                     paddingBottom: '2%',
                   }}>
-                  <Badge borderRadius='full' fontSize='14px' x p='2' colorScheme='teal'>
+                  <Badge borderRadius='full' fontSize='14px' x p='2'>
                     Quyền lợi
                   </Badge>
                 </div>
@@ -506,7 +506,7 @@ const JobPosting = () => {
                 <div
                   htmlFor='name'
                   style={{ display: 'block', paddingTop: '2%', paddingRight: '2%' }}>
-                  <Badge borderRadius='full' fontSize='14px' p='2' colorScheme='teal'>
+                  <Badge borderRadius='full' fontSize='14px' p='2' >
                     Hình ảnh
                   </Badge>
                 </div>
